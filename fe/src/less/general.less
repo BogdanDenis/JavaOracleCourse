@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+i.fa {
+    color: @TextColour;
+}
+
+input, button {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+body {
+    font-size: 16px;
+}
+
+@-webkit-keyframes mainMoveRight {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(90vw);
+    }
+}
+
+@keyframes mainMoveRight {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(90vw);
+    }
+}
+
+@-webkit-keyframes mainMoveLeft {
+    0% {
+        transform: translateX(90vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+@keyframes mainMoveLeft {
+    0% {
+        transform: translateX(90vw);
+    }
+    100% {
+        transform: translateX(0vw);
+    }
+}
+
+main {
+    
+    &.hidden {
+        position: fixed;
+        -webkit-animation: mainMoveRight .5s ease-out 0s forwards;
+           -moz-animation: mainMoveRight .5s ease-out 0s forwards;
+                animation: mainMoveRight .5s ease-out 0s forwards;
+    }
+    
+    &.visible {
+        position: static;
+        -webkit-animation: mainMoveLeft .5s ease-out 0s forwards;
+           -moz-animation: mainMoveLeft .5s ease-out 0s forwards;
+                animation: mainMoveLeft .5s ease-out 0s forwards;
+    }
+}

@@ -1,0 +1,2 @@
+export const GET_NEW_ARRIVALS = 'GET_NEW_ARRIVALS';
+export const SET_NEW_ARRIVALS = 'SET_NEW_ARRIVALS';

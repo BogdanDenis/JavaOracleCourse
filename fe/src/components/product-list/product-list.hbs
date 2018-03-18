@@ -1,0 +1,14 @@
+<section class="category">
+    <h2 class="category-name">{{category-title}}</h2>
+    <p class="category-desc">{{{category-desc}}}</p>
+    {{#each products}}
+    <section class="category-product">
+        <a class="product-link" href="#{{link}}"></a>
+        <img class="product-image" src="{{image-url}}">
+        <div class="product-caption">
+            <p class="product-name">{{name}}</p>
+            <p class="product-price">{{{price}}}</p>
+        </div>
+    </section>
+    {{/each}}
+</section>

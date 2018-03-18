@@ -1,0 +1,44 @@
+@import "../../less/variables.less";
+@import "../../less/mixins.less";
+
+.blog-feed-post {
+    position: relative;
+    
+    width: 75%;
+    margin: 4rem auto;
+    
+    .blog-feed-post-link {
+        .linkOverlay;
+    }
+    
+    .blog-feed-post-image {
+        width: 100%;
+        height: auto;
+    }
+    
+    .blog-feed-post-title {
+        margin: 1rem 0 .5rem 0;
+        
+        .title;
+        .fontSize(14);
+    }
+    
+    .blog-feed-post-date {
+        margin: auto 0 1.5rem 0;
+        
+        .text;
+        .fontSize(14);
+    }
+    
+    .blog-feed-post-text {
+        .text;
+        .fontSize(14);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .blog-feed-post {
+        width: 30%;
+        margin: 0;
+    }
+}

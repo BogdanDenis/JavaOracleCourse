@@ -1,0 +1,11 @@
+#npm modules
+node_modules
+
+#build directory
+
+build
+
+#other files
+
+package-lock.json
+

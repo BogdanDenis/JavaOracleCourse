@@ -1,0 +1,27 @@
+[
+    {
+        "imageUrl": "images/banners/banner1.jpg",
+        "link": ""
+    },
+    {
+        "title": "Soft linen bedding",
+        "text": "From napkins to linen bedding, we make everything by hand for you in out studio in the Dutch country side. Everything is made to order and we can make it exactly how you like it.",
+        "link": ""
+    },
+    {
+        "imageUrl": "images/banners/banner2.jpg",
+        "link": ""
+    },
+    {
+        "title": "Custom made linen curtains",
+        "text": "Create a natural ambiance in your home with By Molle linen curtains. Traditionally crafter from 100% prewashed linen and custom made for you."
+    },
+    {
+        "overlay": {
+            "title": "Home accessories",
+            "subtitle": "beautiful Moebe mirrors and more"
+        },
+        "imageUrl": "images/banners/banner3.jpg",
+        "link": ""
+    }
+]

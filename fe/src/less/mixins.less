@@ -1,0 +1,37 @@
+.fontSize(@size) {
+    font-size: unit(@size / 16, rem);
+}
+
+.lineHeight(@height) {
+    line-height: unit(@height / 16, rem);
+}
+
+.letterSpacing(@width) {
+    letter-spacing: unit(@width / 16, rem);
+}
+
+.bgColour(@hex, @opacity) {
+    background-color: rgba(red(@hex), green(@hex), blue(@hex), @opacity);
+}
+
+.linkOverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.title {
+    font-family: 'Barlow Semi Condensed';
+    font-weight: normal;
+    .fontSize(24);
+    color: @TextColour;
+}
+
+.text {
+    font-family: 'Barlow Semi Condensed';
+    font-weight: lighter;
+    .fontSize(18);
+    color: @TextColour;
+}

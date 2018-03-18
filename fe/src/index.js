@@ -1,0 +1,49 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createBrowserHistory } from 'history';
+import { Router } from 'react-router';
+import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { apiMiddleware } from 'redux-api-middleware';
+import thunk from 'redux-thunk';
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware,
+} from 'redux';
+
+import 'font-awesome/scss/font-awesome.scss';
+
+import App from './app';
+
+import { bannersListReducer } from './components/banners-list/banners-list-reducer';
+import { newArrivalsReducer } from './components/new-arrivals/new-arrivals-reducer';
+
+const history = createBrowserHistory();
+const middleware = routerMiddleware(history);
+const createStoreWithMiddleware = applyMiddleware(
+  middleware,
+  apiMiddleware,
+  thunk,
+)(createStore);
+
+const reducer = combineReducers({
+  newArrivals: newArrivalsReducer,
+  thumbnails: combineReducers({
+    banners: bannersListReducer,
+  }),
+});
+
+const store = createStoreWithMiddleware(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>
+  , document.getElementById('root'),
+);

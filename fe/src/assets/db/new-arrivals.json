@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Oak Frame A4",
+        "price": "&pound; 40.00",
+        "imageUrl": "images/products/FRAME_OAK.jpg",
+        "link": ""
+    },
+    {
+        "title": "Moebe Wall Mirror",
+        "price": "From &pound;95.00",
+        "imageUrl": "images/products/WALL_MIRROR.jpg",
+        "link": ""
+    },
+    {
+        "title": "Linen Pillow White",
+        "price": "From &pound;28.00",
+        "imageUrl": "images/products/PILLOW.jpg",
+        "link": ""
+    },
+    {
+        "title": "Recycled Linen Trow White",
+        "price": "From &pound;119.00",
+        "imageUrl": "images/products/THROW_WHITE.jpg",
+        "link": ""
+    }
+]

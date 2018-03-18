@@ -1,0 +1,50 @@
+@import "../../less/variables.less";
+@import "../../less/mixins.less";
+
+.product-thumbnail {
+    position: relative;
+    
+    margin: 1rem auto;
+    padding: 1rem 0;
+    
+    .product-link {
+        .linkOverlay;
+    }
+    
+    .product-image {
+        width: 100%;
+        height: auto;
+    }
+    
+    .product-caption {
+        margin: 2rem 0 0 0;
+        
+        text-align: center;
+        
+        .product-title {
+            .title;
+            .fontSize(18);
+        }
+        
+        .product-price {
+            margin: .7rem 0 0 0;
+            
+            .text;
+            .fontSize(16);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .product-thumbnail {
+        width: 20%;
+        margin: 0 5%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .product-thumbnail {
+        width: 28%;
+        margin: 0 2%;
+    }
+}
