@@ -10,6 +10,7 @@ export class ProductThumbnailList extends Component {
         return {
             products: PropTypes.array,
             title: PropTypes.string,
+            description: PropTypes.string,
         };
     }
 
@@ -17,6 +18,7 @@ export class ProductThumbnailList extends Component {
         return {
             products: [],
             title: '',
+            description: '',
         };
     }
 

@@ -15,7 +15,7 @@ export class Home extends Component {
             <div className="home-page">
                 <Header />
                 <BannersListContainer />
-                <NewArrivalsListContainer />
+                <NewArrivalsListContainer title="New Arrivals" />
                 <Footer />
             </div>
         );

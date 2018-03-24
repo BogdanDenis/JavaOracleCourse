@@ -7,3 +7,5 @@ export * from './product-thumbnail-list/product-thumbnail-list';
 export * from './blog-post-thumbnail/blog-post-thumbnail';
 export * from './blog-post-thumbnail-list/blog-post-thumbnail-list-container';
 export * from './new-arrivals/new-arrivals-container';
+export * from './options-list/options-list';
+export * from './product/product';
