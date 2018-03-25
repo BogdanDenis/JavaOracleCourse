@@ -22,10 +22,6 @@ export class ProductThumbnailList extends Component {
         };
     }
 
-    componentWillMount() {
-        this.props.getProducts();
-    }
-
     render() {
         return(
             <section className="products">

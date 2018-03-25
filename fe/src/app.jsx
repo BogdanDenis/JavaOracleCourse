@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
+import { Link, Route, Switch } from 'react-router-dom';
 import { withProps } from 'recompose';
 
 import * as pages from './pages';
@@ -11,7 +12,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Route exact path={routes.START_ROUTE} component={pages.Home} />
         <Route path={routes.HOME_ROUTE} component={pages.Home} />
+        <Route path={routes.PRODUCTS_ROUTE} component={pages.ProductsContainer} />
       </div>
     );
   }
