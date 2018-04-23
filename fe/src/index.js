@@ -3,18 +3,18 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { Router } from 'react-router';
-import { routerMiddleware, routerReducer } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import { apiMiddleware } from 'redux-api-middleware';
 import thunk from 'redux-thunk';
 import {
   createStore,
-  combineReducers,
   applyMiddleware,
 } from 'redux';
 
 import 'font-awesome/less/font-awesome.less';
 
 import App from './app';
+import { RootReducer } from './reducers';
 
 const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
@@ -24,12 +24,10 @@ const createStoreWithMiddleware = applyMiddleware(
   thunk,
 )(createStore);
 
-const reducer = combineReducers({
 
-});
 
 const store = createStoreWithMiddleware(
-  reducer,
+  RootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
