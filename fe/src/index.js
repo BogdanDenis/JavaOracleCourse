@@ -16,9 +16,6 @@ import 'font-awesome/scss/font-awesome.scss';
 
 import App from './app';
 
-import { bannersListReducer } from './components/banners-list/banners-list-reducer';
-import { newArrivalsReducer } from './components/new-arrivals/new-arrivals-reducer';
-
 const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
 const createStoreWithMiddleware = applyMiddleware(
@@ -28,10 +25,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const reducer = combineReducers({
-  newArrivals: newArrivalsReducer,
-  thumbnails: combineReducers({
-    banners: bannersListReducer,
-  }),
+
 });
 
 const store = createStoreWithMiddleware(
