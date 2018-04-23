@@ -12,7 +12,7 @@ import {
   applyMiddleware,
 } from 'redux';
 
-import 'font-awesome/scss/font-awesome.scss';
+import 'font-awesome/less/font-awesome.less';
 
 import App from './app';
 
