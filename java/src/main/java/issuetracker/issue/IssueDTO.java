@@ -11,6 +11,7 @@ public class IssueDTO {
 	private String status;
 	private int estimationOriginal;
 	private int estimationUsed;
+	private long projectId;
 	
 	public IssueDTO() {}
 	
@@ -24,7 +25,8 @@ public class IssueDTO {
 			long reporterId,
 			String status,
 			int estimationOriginal,
-			int estimationUsed) {
+			int estimationUsed,
+			long projectId) {
 		this.id = id;
 		this.type = type;
 		this.name = name;
@@ -35,6 +37,7 @@ public class IssueDTO {
 		this.status = status;
 		this.estimationOriginal = estimationOriginal;
 		this.estimationUsed = estimationUsed;
+		this.projectId = projectId;
 	}
 	
 	public String getId() {
@@ -115,5 +118,13 @@ public class IssueDTO {
 	
 	public void setEstimationUsed(int estimationUsed) {
 		this.estimationUsed = estimationUsed;
+	}
+	
+	public long getProjectId() {
+		return projectId;
+	}
+	
+	public void setProjectId(long projectId) {
+		this.projectId = projectId;
 	}
 }

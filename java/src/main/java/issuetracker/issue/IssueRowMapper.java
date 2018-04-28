@@ -18,6 +18,7 @@ public class IssueRowMapper implements RowMapper {
 		issue.setStatus(rs.getString("status"));
 		issue.setEstimationOriginal(rs.getInt("estimationOriginal"));
 		issue.setEstimationUsed(rs.getInt("estimationUsed"));
+		issue.setProjectId(rs.getLong("projectId"));
 		return issue;
 	}
 }
