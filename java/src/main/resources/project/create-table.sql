@@ -1,0 +1,4 @@
+CREATE TABLE Project(
+    id INTEGER PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL
+);
