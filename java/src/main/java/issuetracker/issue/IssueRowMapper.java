@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("rawtypes")
-public class IssueRowMapper implements RowMapper {
-	public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-		IssueDTO issue = new IssueDTO();
+public class IssueRowMapper implements RowMapper<IssueRespDTO> {
+	public IssueRespDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
+		IssueRespDTO issue = new IssueRespDTO();
 		issue.setId(rs.getString("id"));
 		issue.setType(rs.getString("type"));
 		issue.setName(rs.getString("name"));
@@ -18,7 +18,7 @@ public class IssueRowMapper implements RowMapper {
 		issue.setStatus(rs.getString("status"));
 		issue.setEstimationOriginal(rs.getInt("estimationOriginal"));
 		issue.setEstimationUsed(rs.getInt("estimationUsed"));
-		issue.setProjectId(rs.getLong("projectId"));
+		issue.setSprintId(rs.getLong("sprintId"));
 		return issue;
 	}
 }

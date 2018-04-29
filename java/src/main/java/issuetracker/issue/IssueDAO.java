@@ -15,37 +15,43 @@ public class IssueDAO {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
-	public List<IssueDTO> findAll() {
-		List<IssueDTO> res = template.query(
-			"SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, projectId\n" +
-				"FROM Issue",
-			new IssueRowMapper()
-		);
-		
-		return res;
+	public List<IssueRespDTO> findAll() {
+		try {
+			List<IssueRespDTO> res = template.query(
+				"SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId\n" +
+					"FROM Issue",
+				new IssueRowMapper()
+			);
+			return res;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
-	public IssueDTO findById(String id) {
-		String SQL = "SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, projectId\n" +
-				"FROM Issue\n" +
-				"WHERE id = :id";
+	public IssueRespDTO findById(String id) {
+		String SQL = "SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId\n" +
+					"FROM Issue\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("id", id);
-		IssueDTO issue = (IssueDTO) template.queryForObject(SQL, params, new IssueRowMapper());
-		
-		return issue;
+		try {
+			IssueRespDTO issue = template.queryForObject(SQL, params, new IssueRowMapper());
+			return issue;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
-	public void create(IssueDTO issue) {
-		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, projectId)\n" +
-				"VALUES((SELECT typeName" +
-						"FROM Type" +
+	public boolean create(IssueDTO issue) {
+		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId)\n" +
+					"VALUES((SELECT typeName\n" +
+						"FROM Type\n" +
 						"WHERE typeName = :type)," +
-						":name, :description, :creationDate, :assigneeId, :reporterId," +
-						"(SELECT statusName" +
-						"FROM Status" +
+						"CAST(:name AS VARCHAR2(255)), CAST(:description AS VARCHAR2(255)), :creationDate, :assigneeId, :reporterId," +
+						"(SELECT statusName\n" +
+						"FROM Status\n" +
 						"WHERE statusName = :status)," +
-						":estimationOriginal, :estimationUsed, :projectId)";
+						":estimationOriginal, :estimationUsed, :sprintId)";
 		Map params = new HashMap();
 		params.put("type", issue.getType());
 		params.put("name", issue.getName());
@@ -56,57 +62,87 @@ public class IssueDAO {
 		params.put("status", issue.getStatus());
 		params.put("estimationOriginal", issue.getEstimationOriginal());
 		params.put("estimationUsed", issue.getEstimationUsed());
-		params.put("projectId", issue.getProjectId());
-		template.update(SQL, params);
+		params.put("sprintId", issue.getSprintId());
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public void changeType(IssueTypeDTO issueTypeDTO) {
+	public boolean changeType(IssueTypeDTO issueTypeDTO) {
 		String SQL = "UPDATE Issue\n" +
-				"SET type = :type\n" +
-				"WHERE id = :id";
+					"SET type = :type\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("type", issueTypeDTO.getType());
 		params.put("id", issueTypeDTO.getId());
-		template.update(SQL, params);
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public void changeName(IssueNameDTO issueNameDTO) {
+	public boolean changeName(IssueNameDTO issueNameDTO) {
 		String SQL = "UPDATE Issue\n" +
-				"SET name = :name\n" +
-				"WHERE id = :id";
+					"SET name = :name\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("name", issueNameDTO.getName());
 		params.put("id", issueNameDTO.getId());
-		template.update(SQL, params);
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public void changeDescription(IssueDescriptionDTO issueDescriptionDTO) {
+	public boolean changeDescription(IssueDescriptionDTO issueDescriptionDTO) {
 		String SQL = "UPDATE Issue\n" +
-				"SET description = :description\n" +
-				"WHERE id = :id";
+					"SET description = :description\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("description", issueDescriptionDTO.getDescription());
 		params.put("id", issueDescriptionDTO.getId());
-		template.update(SQL, params);
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public void changeAssignee(IssueAssigneeDTO issueAssigneeDTO) {
+	public boolean changeAssignee(IssueAssigneeDTO issueAssigneeDTO) {
 		String SQL = "UPDATE Issue\n" +
-				"SET assigneeId = :assignee\n" +
-				"WHERE id = :id";
+					"SET assigneeId = :assignee\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("assignee", issueAssigneeDTO.getAssigneeId());
 		params.put("id", issueAssigneeDTO.getId());
-		template.update(SQL, params);
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	public void changeStatus(IssueStatusDTO issueStatusDTO) {
+	public boolean changeStatus(IssueStatusDTO issueStatusDTO) {
 		String SQL = "UPDATE Issue\n" +
-				"SET status = :status\n" +
-				"WHERE id = :id";
+					"SET status = :status\n" +
+					"WHERE id = :id";
 		Map params = new HashMap();
 		params.put("status", issueStatusDTO.getStatus());
 		params.put("id", issueStatusDTO.getId());
-		template.update(SQL, params);
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 }

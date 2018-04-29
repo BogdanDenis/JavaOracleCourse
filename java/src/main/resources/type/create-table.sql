@@ -1,3 +1,3 @@
 CREATE TABLE Type(
-    typeName CHAR(50) PRIMARY KEY
+    typeName VARCHAR2(50) PRIMARY KEY
 );

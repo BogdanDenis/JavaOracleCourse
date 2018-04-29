@@ -1,8 +1,7 @@
 package issuetracker.issue;
 
-import java.util.Date;
-
-public class IssueDTO {
+public class IssueRespDTO {
+	private String id;
 	private String type;
 	private String name;
 	private String description;
@@ -14,28 +13,39 @@ public class IssueDTO {
 	private int estimationUsed;
 	private long sprintId;
 	
-	public IssueDTO() {}
+	public IssueRespDTO() {}
 	
-	public IssueDTO(
+	public IssueRespDTO(
+			String id,
 			String type,
 			String name,
 			String description,
+			long creationDate,
 			long assigneeId,
 			long reporterId,
 			String status,
 			int estimationOriginal,
 			int estimationUsed,
 			long sprintId) {
+		this.id = id;
 		this.type = type;
 		this.name = name;
 		this.description = description;
-		this.creationDate = new Date().getTime();
+		this.creationDate = creationDate;
 		this.assigneeId = assigneeId;
 		this.reporterId = reporterId;
 		this.status = status;
 		this.estimationOriginal = estimationOriginal;
 		this.estimationUsed = estimationUsed;
 		this.sprintId = sprintId;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public String getType() {

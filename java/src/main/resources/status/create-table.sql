@@ -1,3 +1,3 @@
 CREATE TABLE Status(
-    statusName CHAR(50) PRIMARY KEY
+    statusName VARCHAR2(50) PRIMARY KEY
 );
