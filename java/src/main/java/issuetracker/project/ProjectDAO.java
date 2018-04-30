@@ -1,5 +1,7 @@
 package issuetracker.project;
 
+import issuetracker.sprint.SprintDAO;
+import issuetracker.sprint.SprintDTO;
 import issuetracker.sprint.SprintRespDTO;
 import issuetracker.sprint.SprintRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import java.util.Map;
 
 @Repository
 public class ProjectDAO {
+	@Autowired
+	private SprintDAO sprintDAO;
 	
 	@Autowired
 	private NamedParameterJdbcTemplate template;
