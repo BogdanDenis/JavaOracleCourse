@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
+import './menu-list.sass';
+
 export class MenuList extends Component {
   static get propTypes() {
     return {
@@ -17,7 +19,9 @@ export class MenuList extends Component {
     return (
       <section className="menu-list">
         <h2 className="menu-list__title">{title}</h2>
-        {children}
+        <section className="menu-list__wrapper">
+          {children}
+        </section>
       </section>
     );
   }

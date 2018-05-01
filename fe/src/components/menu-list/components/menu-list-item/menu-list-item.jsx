@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import './menu-list-item.sass';
 
 const MenuListItem = ({ label, url }) => (
-  <Link className="menu-list__item" to={url}>
-    <p className="menu-list__item__title">{label}</p>
+  <Link className="menu-list__wrapper__item" to={url}>
+    <p className="menu-list__wrapper__item__title">{label}</p>
   </Link>
 );
 

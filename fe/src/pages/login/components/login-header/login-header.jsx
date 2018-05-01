@@ -1,16 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import {
-  Header,
-  MenuListItem,
-} from '../../../../components';
+import { Header } from '../../../../components';
 import * as routes from '../../../../constants';
+
+import './login-header.sass';
 
 export const LoginHeader = () => (
   <Header>
-    <MenuListItem
-      label="Login"
-      url={routes.LOGIN_ROUTE}
-    />
+    <Link
+      to={routes.LOGIN_ROUTE}
+      className="login-link"
+    >
+      Login
+    </Link>
   </Header>
 );

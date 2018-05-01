@@ -1,0 +1,37 @@
+@import "../../assets/styles/variables.sass"
+
+.menu-list
+  position: relative
+  
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-self: stretch
+  align-items: center
+
+  width: 10%
+  margin: 0 2%
+
+  &__title
+    width: 100%
+    margin: 0
+    align-self: center
+    text-align: center
+
+    font-size: 1.3rem
+    color: $primary-white
+
+  &__wrapper
+    position: absolute
+    top: calc(100% + 1px)
+
+    display: none
+    width: 100%
+
+    background: $primary-white
+
+  &:hover
+    background: $primary-dark-hover
+
+    .menu-list__wrapper
+      display: block
