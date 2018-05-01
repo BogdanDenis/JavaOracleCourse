@@ -24,10 +24,18 @@ export class CommonHeader extends Component {
         >
           <MenuItem>
             <Link
-              to={routes.PROJECTS_ROUTE}
+              to={routes.ALL_PROJECTS_ROUTE}
               className="link"
             >
               View All Projects
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to={routes.MY_PROJECTS_ROUTE}
+              className="link"
+            >
+              View My Projects
             </Link>
           </MenuItem>
         </NavDropdown>
