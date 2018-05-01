@@ -12,6 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path={routes.LOGIN_ROUTE} component={pages.Login} />
+        <Route path={routes.HOME_ROUTE} component={pages.Home} />
       </div>
     );
   }

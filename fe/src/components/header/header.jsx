@@ -8,7 +8,10 @@ import './header.sass';
 export const Header = ({ children }) => (
   <section className="header">
     <Logo />
-    <Nav bsStyle="pills">
+    <Nav
+      bsStyle="pills"
+      className="menu"
+    >
       { children }
     </Nav>
   </section>
