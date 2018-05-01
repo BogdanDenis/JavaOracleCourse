@@ -1,5 +1,6 @@
 package issuetracker.sprint;
 
+import issuetracker.issue.IssueRespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,15 @@ public class SprintController {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(value = "/{id}/issues", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getSprintsIssues(@PathVariable("id") long id) {
+		List<IssueRespDTO> res = sprintDAO.getSprintsIssues(id);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.POST,
