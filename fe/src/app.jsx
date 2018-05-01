@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom';
 import * as pages from './pages';
 import * as routes from './constants';
 
-import './app.less';
+import './app.sass';
 
 class App extends Component {
   render() {

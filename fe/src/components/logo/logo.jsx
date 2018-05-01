@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './logo.less';
+import './logo.sass';
 
 export const Logo = () => (
   <section className="logo">
