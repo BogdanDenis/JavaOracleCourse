@@ -24,8 +24,6 @@ const createStoreWithMiddleware = applyMiddleware(
   thunk,
 )(createStore);
 
-
-
 const store = createStoreWithMiddleware(
   RootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
