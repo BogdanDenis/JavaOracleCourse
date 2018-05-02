@@ -14,6 +14,7 @@ class App extends Component {
         <Route exact path={routes.LOGIN_ROUTE} component={pages.Login} />
         <Route path={routes.HOME_ROUTE} component={pages.Home} />
         <Route path={routes.ALL_PROJECTS_ROUTE} component={pages.AllProjectsContainer} />
+        <Route path={routes.MY_PROJECTS_ROUTE} component={pages.MyProjectsContainer} />
       </div>
     );
   }
