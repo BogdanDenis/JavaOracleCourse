@@ -12,6 +12,7 @@ export class Projects extends Component {
   static get propTypes() {
     return {
       getProjects: PropTypes.func.isRequired,
+      saveViewedProject: PropTypes.func.isRequired,
       projects: PropTypes.array,
     };
   }
@@ -30,6 +31,7 @@ export class Projects extends Component {
 
   onProjectSelect(id) {
     console.log(id);
+    this.props.saveViewedProject(id);
   }
 
   render() {

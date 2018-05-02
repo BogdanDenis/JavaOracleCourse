@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { Projects } from './projects';
+import { ProjectsContainer } from './projects-container';
 import {
   getAllProjects,
 } from '../../actions';
@@ -16,4 +16,4 @@ const mapDispatchToProps = {
 export const AllProjectsContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Projects);
+)(ProjectsContainer);

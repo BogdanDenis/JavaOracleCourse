@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Projects } from './projects';
+import { ProjectsContainer } from './projects-container';
 import {
   getAllProjects,
   getWorkload,
@@ -42,4 +42,4 @@ const MyProjectsHOC = (WrappedComponent) => {
   )(MyProjects);
 }
 
-export const MyProjectsContainer = MyProjectsHOC(Projects);
+export const MyProjectsContainer = MyProjectsHOC(ProjectsContainer);
