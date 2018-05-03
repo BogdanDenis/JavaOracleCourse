@@ -16,7 +16,9 @@ public class WorkloadDAO {
 	public List<WorkloadRespDTO> findAll() {
 		try {
 			List<WorkloadRespDTO> res = template.query(
-				"SELECT id, developerId, projectId FROM Workload",
+				"SELECT id, developerId, projectKey\n" +
+					"FROM Workload\n" +
+					"WHERE isActive = 1",
 				new WorkloadRowMapper()
 			);
 			return res;
@@ -27,9 +29,9 @@ public class WorkloadDAO {
 	
 	public List<WorkloadRespDTO> findProjectsWithDeveloper(long developerId) {
 		try {
-			String SQL = "SELECT id, developerId, projectId " +
-						"FROM Workload " +
-						"WHERE developerId = :developerId";
+			String SQL = "SELECT id, developerId, projectKey " +
+						 "FROM Workload " +
+						 "WHERE developerId = :developerId AND isActive = 1";
 			Map params = new HashMap();
 			params.put("developerId", developerId);
 			List<WorkloadRespDTO> res = template.query(SQL, params, new WorkloadRowMapper());
@@ -39,13 +41,13 @@ public class WorkloadDAO {
 		}
 	}
 	
-	public List<WorkloadRespDTO> findDevelopersOnAProject(long projectId) {
+	public List<WorkloadRespDTO> findDevelopersOnAProject(String projectKey) {
 		try {
-			String SQL = "SELECT id, developerId, projectId " +
-						"FROM Workload " +
-						"WHERE projectId = :projectId";
+			String SQL = "SELECT id, developerId, projectKey " +
+						 "FROM Workload " +
+						 "WHERE projectKey = :projectKey AND isActive = 1";
 			Map params = new HashMap();
-			params.put("projectId", projectId);
+			params.put("projectKey", projectKey);
 			List<WorkloadRespDTO> res = template.query(SQL, params, new WorkloadRowMapper());
 			return res;
 		} catch (Exception e) {
@@ -55,19 +57,34 @@ public class WorkloadDAO {
 	
 	public WorkloadRespDTO addDeveloperToAProject(WorkloadDTO workloadDTO) {
 		try {
-			String SQL = "INSERT INTO Workload(developerId, projectId) " +
-						"VALUES(:developerId, :projectId)";
+			String SQL = "INSERT INTO Workload(developerId, projectKey) " +
+						 "VALUES(:developerId, :projectKey)";
 			Map params = new HashMap();
 			params.put("developerId", workloadDTO.getDeveloperId());
-			params.put("projectId", workloadDTO.getProjectId());
+			params.put("projectKey", workloadDTO.getProjectKey());
 			template.update(SQL, params);
-			SQL = "SELECT id, developerId, projectId " +
-					"FROM Workload " +
-					"WHERE developerId = :developerId AND projectId = :projectId";
+			SQL = "SELECT id, developerId, projectKey " +
+				  "FROM Workload " +
+				  "WHERE developerId = :developerId AND projectKey = :projectKey";
 			WorkloadRespDTO res = template.queryForObject(SQL, params, new WorkloadRowMapper());
 			return res;
 		} catch (Exception e) {
 			return null;
+		}
+	}
+	
+	public boolean removeDeveloperFromAProject(WorkloadDTO workloadDTO) {
+		String SQL = "UPDATE Workload\n" +
+					 "SET isActive = 0\n" +
+					 "WHERE developerId = :developerId AND projectKey = :projectKey";
+		Map params = new HashMap();
+		params.put("projectKey", workloadDTO.getProjectKey());
+		params.put("developerId", workloadDTO.getDeveloperId());
+		try {
+			template.update(SQL, params);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 }

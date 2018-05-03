@@ -41,12 +41,22 @@ public class WorkloadController {
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
 	}
 	
-	@RequestMapping(value = "/project/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<?> getProjectsDevelopers(@PathVariable("id") long projectId) {
-		List<WorkloadRespDTO> res = workloadDAO.findDevelopersOnAProject(projectId);
+	@RequestMapping(value = "/project/{key}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getProjectsDevelopers(@PathVariable("key") String projectKey) {
+		List<WorkloadRespDTO> res = workloadDAO.findDevelopersOnAProject(projectKey);
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.PATCH,
+			consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> removeDeveloperFromAProject(@RequestBody WorkloadDTO workloadDTO) {
+		boolean success = workloadDAO.removeDeveloperFromAProject(workloadDTO);
+		if (success) {
+			return new ResponseEntity<>("", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

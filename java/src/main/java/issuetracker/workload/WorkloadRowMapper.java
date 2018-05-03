@@ -11,7 +11,7 @@ public class WorkloadRowMapper implements RowMapper<WorkloadRespDTO> {
 		WorkloadRespDTO developerProject = new WorkloadRespDTO();
 		developerProject.setId(rs.getLong("id"));
 		developerProject.setDeveloperId(rs.getLong("developerId"));
-		developerProject.setProjectId(rs.getLong("projectId"));
+		developerProject.setProjectKey(rs.getString("projectKey"));
 		return developerProject;
 	}
 }

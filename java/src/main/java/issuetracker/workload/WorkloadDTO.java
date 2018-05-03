@@ -2,13 +2,13 @@ package issuetracker.workload;
 
 public class WorkloadDTO {
 	private long developerId;
-	private long projectId;
+	private String projectKey;
 	
 	public WorkloadDTO() {}
 	
-	public WorkloadDTO(long developerId, long projectId) {
+	public WorkloadDTO(long developerId, String projectKey) {
 		this.developerId = developerId;
-		this.projectId = projectId;
+		this.projectKey = projectKey;
 	}
 	
 	public long getDeveloperId() {
@@ -19,11 +19,11 @@ public class WorkloadDTO {
 		this.developerId = developerId;
 	}
 	
-	public long getProjectId() {
-		return projectId;
+	public String getProjectKey() {
+		return projectKey;
 	}
 	
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
+	public void setProjectKey(String projectKey) {
+		this.projectKey = projectKey;
 	}
 }
