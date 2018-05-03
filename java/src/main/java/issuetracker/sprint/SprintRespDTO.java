@@ -3,15 +3,17 @@ package issuetracker.sprint;
 public class SprintRespDTO {
 	private long id;
 	private String name;
-	private String status;
+	private int isBacklog;
+	private int isActive;
 	private long projectId;
 	
 	public SprintRespDTO() {}
 	
-	public SprintRespDTO(long id, String name, String status, long projectId) {
+	public SprintRespDTO(long id, String name, int isBacklog, int isActive, long projectId) {
 		this.id = id;
 		this.name = name;
-		this.status = status;
+		this.isBacklog = isBacklog;
+		this.isActive = isActive;
 		this.projectId = projectId;
 	}
 	
@@ -31,12 +33,20 @@ public class SprintRespDTO {
 		this.name = name;
 	}
 	
-	public String getStatus() {
-		return status;
+	public int getIsBacklog() {
+		return isBacklog;
 	}
 	
-	public void setStatus(String status) {
-		this.status = status;
+	public void setIsBacklog(int isBacklog) {
+		this.isBacklog = isBacklog;
+	}
+	
+	public int getIsActive() {
+		return isActive;
+	}
+	
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
 	}
 	
 	public long getProjectId() {

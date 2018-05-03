@@ -1,18 +1,18 @@
 package issuetracker.issue;
 
 public class IssueAssigneeDTO {
-	private String id;
+	private String key;
 	private long assigneeId;
 	
 	public IssueAssigneeDTO() {}
 	
-	public IssueAssigneeDTO(String id, long assigneeId) {
-		this.id = id;
+	public IssueAssigneeDTO(String key, long assigneeId) {
+		this.key = key;
 		this.assigneeId = assigneeId;
 	}
 	
-	public String getId() {
-		return id;
+	public String getKey() {
+		return key;
 	}
 	
 	public long getAssigneeId() {

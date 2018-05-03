@@ -1,4 +1,6 @@
 CREATE TABLE Project(
     id INTEGER PRIMARY KEY,
-    name VARCHAR2(100) NOT NULL
+    key VARCHAR2(100) UNIQUE NOT NULL,
+    name VARCHAR2(100) NOT NULL,
+    storyIssueCount INTEGER
 );

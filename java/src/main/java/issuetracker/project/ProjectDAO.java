@@ -23,7 +23,7 @@ public class ProjectDAO {
 	public List<ProjectRespDTO> findAll() {
 		try {
 			List<ProjectRespDTO> res = template.query(
-					"SELECT id, name FROM Project",
+					"SELECT id, key, name FROM Project",
 					new ProjectRowMapper()
 			);
 			return res;
@@ -32,10 +32,10 @@ public class ProjectDAO {
 		}
 	}
 	
-	public ProjectRespDTO findById(long id) {
-		String SQL = "SELECT id, name FROM Project WHERE id = :id";
+	public ProjectRespDTO findByKey(String key) {
+		String SQL = "SELECT id, key, name FROM Project WHERE key = :key";
 		Map params = new HashMap();
-		params.put("id", id);
+		params.put("key", key);
 		try {
 			ProjectRespDTO project = template.queryForObject(SQL, params, new ProjectRowMapper());
 			return project;
@@ -45,8 +45,9 @@ public class ProjectDAO {
 	}
 	
 	public boolean create(ProjectDTO projectDTO) {
-		String SQL = "INSERT INTO Project(name) VALUES(:name)";
+		String SQL = "INSERT INTO Project(key, name) VALUES(:key, :name)";
 		Map params = new HashMap();
+		params.put("key", projectDTO.getKey());
 		params.put("name", projectDTO.getName());
 		try {
 			template.update(SQL, params);
@@ -56,12 +57,15 @@ public class ProjectDAO {
 		}
 	}
 	
-	public List<SprintRespDTO> findSprints(long id) {
-		String SQL = "SELECT id, name, status, projectId\n" +
+	public List<SprintRespDTO> findSprints(String key) {
+		String SQL = "SELECT id, name, projectId\n" +
 					"FROM Sprint\n" +
-					"WHERE projectId = :id";
+					"WHERE projectId = (SELECT id\n" +
+									   "FROM Project\n" +
+									   "WHERE key = :key)\n" +
+						"AND isBacklog = 0";
 		Map params = new HashMap();
-		params.put("id", id);
+		params.put("key", key);
 		try {
 			List<SprintRespDTO> res = template.query(SQL, params, new SprintRowMapper());
 			return res;

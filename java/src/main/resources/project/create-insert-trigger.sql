@@ -3,6 +3,7 @@ BEFORE INSERT ON Project
 FOR EACH ROW
 BEGIN
     SELECT ProjectIds.nextval INTO :new.id FROM dual;
+    SELECT 0 INTO :new.storyIssueCount FROM dual;
 END;
 
 CREATE OR REPLACE TRIGGER ProjectInsertAfter
@@ -13,8 +14,8 @@ DECLARE
     v_projectid INTEGER;
 BEGIN
     SELECT :new.id INTO v_projectid FROM dual;
-    INSERT INTO Sprint(name, status, projectId)
-    VALUES('Backlog', (SELECT statusName
-                       FROM Status
-                       WHERE statusName = 'OPEN'), v_projectid);
+    INSERT INTO Sprint(name, isBacklog, isActive, projectId)
+    VALUES('Backlog', 1, 0, v_projectid);
+    UPDATE Sprint SET isActive = 0
+    WHERE id = (SELECT MAX(id) FROM Sprint);
 END;

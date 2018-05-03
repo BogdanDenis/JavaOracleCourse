@@ -12,7 +12,7 @@ public class IssueDTO {
 	private String status;
 	private int estimationOriginal;
 	private int estimationUsed;
-	private long sprintId;
+	private String storyKey;
 	
 	public IssueDTO() {}
 	
@@ -25,7 +25,7 @@ public class IssueDTO {
 			String status,
 			int estimationOriginal,
 			int estimationUsed,
-			long sprintId) {
+			String storyKey) {
 		this.type = type;
 		this.name = name;
 		this.description = description;
@@ -35,7 +35,7 @@ public class IssueDTO {
 		this.status = status;
 		this.estimationOriginal = estimationOriginal;
 		this.estimationUsed = estimationUsed;
-		this.sprintId = sprintId;
+		this.storyKey = storyKey;
 	}
 	
 	public String getType() {
@@ -110,11 +110,11 @@ public class IssueDTO {
 		this.estimationUsed = estimationUsed;
 	}
 	
-	public long getSprintId() {
-		return sprintId;
+	public String getStoryKey() {
+		return storyKey;
 	}
 	
-	public void setSprintId(long sprintId) {
-		this.sprintId = sprintId;
+	public void setStoryKey(String storyKey) {
+		this.storyKey = storyKey;
 	}
 }

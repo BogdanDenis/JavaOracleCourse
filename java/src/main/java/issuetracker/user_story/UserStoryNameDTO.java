@@ -1,24 +1,14 @@
-package issuetracker.project;
+package issuetracker.user_story;
 
-public class ProjectRespDTO {
-	private long id;
+public class UserStoryNameDTO {
 	private String key;
 	private String name;
 	
-	public ProjectRespDTO() {}
+	public UserStoryNameDTO() {}
 	
-	public ProjectRespDTO(long id, String key,String name) {
-		this.id = id;
+	public UserStoryNameDTO(String key, String name) {
 		this.key = key;
 		this.name = name;
-	}
-	
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 	public String getKey() {

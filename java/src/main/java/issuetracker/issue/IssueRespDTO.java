@@ -1,7 +1,7 @@
 package issuetracker.issue;
 
 public class IssueRespDTO {
-	private String id;
+	private String key;
 	private String type;
 	private String name;
 	private String description;
@@ -11,12 +11,12 @@ public class IssueRespDTO {
 	private String status;
 	private int estimationOriginal;
 	private int estimationUsed;
-	private long sprintId;
+	private String storyKey;
 	
 	public IssueRespDTO() {}
 	
 	public IssueRespDTO(
-			String id,
+			String key,
 			String type,
 			String name,
 			String description,
@@ -26,8 +26,8 @@ public class IssueRespDTO {
 			String status,
 			int estimationOriginal,
 			int estimationUsed,
-			long sprintId) {
-		this.id = id;
+			String storyKey) {
+		this.key = key;
 		this.type = type;
 		this.name = name;
 		this.description = description;
@@ -37,15 +37,15 @@ public class IssueRespDTO {
 		this.status = status;
 		this.estimationOriginal = estimationOriginal;
 		this.estimationUsed = estimationUsed;
-		this.sprintId = sprintId;
+		this.storyKey = storyKey;
 	}
 	
-	public String getId() {
-		return id;
+	public String getKey() {
+		return key;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setKey(String key) {
+		this.key = key;
 	}
 	
 	public String getType() {
@@ -120,11 +120,11 @@ public class IssueRespDTO {
 		this.estimationUsed = estimationUsed;
 	}
 	
-	public long getSprintId() {
-		return sprintId;
+	public String getStoryKey() {
+		return storyKey;
 	}
 	
-	public void setSprintId(long sprintId) {
-		this.sprintId = sprintId;
+	public void setStoryKey(String storyKey) {
+		this.storyKey = storyKey;
 	}
 }

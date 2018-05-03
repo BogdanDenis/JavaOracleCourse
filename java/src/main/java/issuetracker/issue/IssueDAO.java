@@ -18,7 +18,7 @@ public class IssueDAO {
 	public List<IssueRespDTO> findAll() {
 		try {
 			List<IssueRespDTO> res = template.query(
-				"SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId\n" +
+				"SELECT key, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, storyKey\n" +
 					"FROM Issue",
 				new IssueRowMapper()
 			);
@@ -28,12 +28,12 @@ public class IssueDAO {
 		}
 	}
 	
-	public IssueRespDTO findById(String id) {
-		String SQL = "SELECT id, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId\n" +
+	public IssueRespDTO findByKey(String key) {
+		String SQL = "SELECT key, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, storyKey\n" +
 					"FROM Issue\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
-		params.put("id", id);
+		params.put("key", key);
 		try {
 			IssueRespDTO issue = template.queryForObject(SQL, params, new IssueRowMapper());
 			return issue;
@@ -43,7 +43,7 @@ public class IssueDAO {
 	}
 	
 	public boolean create(IssueDTO issue) {
-		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, sprintId)\n" +
+		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, storyKey)\n" +
 					"VALUES((SELECT typeName\n" +
 						"FROM Type\n" +
 						"WHERE typeName = :type)," +
@@ -51,7 +51,7 @@ public class IssueDAO {
 						"(SELECT statusName\n" +
 						"FROM Status\n" +
 						"WHERE statusName = :status)," +
-						":estimationOriginal, :estimationUsed, :sprintId)";
+						":estimationOriginal, :estimationUsed, :storyKey)";
 		Map params = new HashMap();
 		params.put("type", issue.getType());
 		params.put("name", issue.getName());
@@ -62,7 +62,7 @@ public class IssueDAO {
 		params.put("status", issue.getStatus());
 		params.put("estimationOriginal", issue.getEstimationOriginal());
 		params.put("estimationUsed", issue.getEstimationUsed());
-		params.put("sprintId", issue.getSprintId());
+		params.put("storyKey", issue.getStoryKey());
 		try {
 			template.update(SQL, params);
 			return true;
@@ -74,10 +74,10 @@ public class IssueDAO {
 	public boolean changeType(IssueTypeDTO issueTypeDTO) {
 		String SQL = "UPDATE Issue\n" +
 					"SET type = :type\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
 		params.put("type", issueTypeDTO.getType());
-		params.put("id", issueTypeDTO.getId());
+		params.put("key", issueTypeDTO.getKey());
 		try {
 			template.update(SQL, params);
 			return true;
@@ -89,10 +89,10 @@ public class IssueDAO {
 	public boolean changeName(IssueNameDTO issueNameDTO) {
 		String SQL = "UPDATE Issue\n" +
 					"SET name = :name\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
 		params.put("name", issueNameDTO.getName());
-		params.put("id", issueNameDTO.getId());
+		params.put("key", issueNameDTO.getKey());
 		try {
 			template.update(SQL, params);
 			return true;
@@ -104,10 +104,10 @@ public class IssueDAO {
 	public boolean changeDescription(IssueDescriptionDTO issueDescriptionDTO) {
 		String SQL = "UPDATE Issue\n" +
 					"SET description = :description\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
 		params.put("description", issueDescriptionDTO.getDescription());
-		params.put("id", issueDescriptionDTO.getId());
+		params.put("key", issueDescriptionDTO.getKey());
 		try {
 			template.update(SQL, params);
 			return true;
@@ -119,10 +119,10 @@ public class IssueDAO {
 	public boolean changeAssignee(IssueAssigneeDTO issueAssigneeDTO) {
 		String SQL = "UPDATE Issue\n" +
 					"SET assigneeId = :assignee\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
 		params.put("assignee", issueAssigneeDTO.getAssigneeId());
-		params.put("id", issueAssigneeDTO.getId());
+		params.put("key", issueAssigneeDTO.getKey());
 		try {
 			template.update(SQL, params);
 			return true;
@@ -134,10 +134,10 @@ public class IssueDAO {
 	public boolean changeStatus(IssueStatusDTO issueStatusDTO) {
 		String SQL = "UPDATE Issue\n" +
 					"SET status = :status\n" +
-					"WHERE id = :id";
+					"WHERE key = :key";
 		Map params = new HashMap();
 		params.put("status", issueStatusDTO.getStatus());
-		params.put("id", issueStatusDTO.getId());
+		params.put("key", issueStatusDTO.getKey());
 		try {
 			template.update(SQL, params);
 			return true;

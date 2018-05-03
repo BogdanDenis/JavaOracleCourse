@@ -11,7 +11,8 @@ public class SprintRowMapper implements RowMapper<SprintRespDTO> {
 		SprintRespDTO sprint = new SprintRespDTO();
 		sprint.setId(rs.getLong("id"));
 		sprint.setName(rs.getString("name"));
-		sprint.setStatus(rs.getString("status"));
+		sprint.setIsBacklog(rs.getInt("isBacklog"));
+		sprint.setIsActive(rs.getInt("isActive"));
 		sprint.setProjectId(rs.getLong("projectId"));
 		return sprint;
 	}

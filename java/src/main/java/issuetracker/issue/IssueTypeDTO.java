@@ -1,22 +1,22 @@
 package issuetracker.issue;
 
 public class IssueTypeDTO {
-	private String id;
+	private String key;
 	private String type;
 	
 	public IssueTypeDTO() {}
 	
-	public IssueTypeDTO(String id, String type) {
-		this.id = id;
+	public IssueTypeDTO(String key, String type) {
+		this.key = key;
 		this.type = type;
 	}
 	
-	public String getId() {
-		return id;
+	public String getKey() {
+		return key;
 	}
 	
-	public void setId(String id) {
-		this.id = id;
+	public void setKey(String key) {
+		this.key= key;
 	}
 	
 	public String getType() {

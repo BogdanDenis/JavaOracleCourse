@@ -1,6 +1,7 @@
 package issuetracker.sprint;
 
 import issuetracker.issue.IssueRespDTO;
+import issuetracker.user_story.UserStoryRespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +33,9 @@ public class SprintController {
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
 	}
 	
-	@RequestMapping(value = "/{id}/issues", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<?> getSprintsIssues(@PathVariable("id") long id) {
-		List<IssueRespDTO> res = sprintDAO.getSprintsIssues(id);
+	@RequestMapping(value = "/{id}/stories", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getSprintStories(@PathVariable("id") long id) {
+		List<UserStoryRespDTO> res = sprintDAO.getSprintsStories(id);
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
@@ -49,15 +50,5 @@ public class SprintController {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
 		return new ResponseEntity<>("", HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/changeStatus", method = RequestMethod.PATCH,
-			consumes = "application/json", produces = "application/json")
-	public ResponseEntity<?> changeStatus(@RequestBody SprintStatusDTO sprintStatusDTO) {
-		SprintRespDTO res = sprintDAO.changeStatus(sprintStatusDTO);
-		if (res != null) {
-			return new ResponseEntity<>(res, HttpStatus.OK);
-		}
-		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
 	}
 }

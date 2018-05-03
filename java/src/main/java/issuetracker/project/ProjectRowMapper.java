@@ -10,6 +10,7 @@ public class ProjectRowMapper implements RowMapper<ProjectRespDTO> {
 	public ProjectRespDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		ProjectRespDTO project = new ProjectRespDTO();
 		project.setId(rs.getLong("id"));
+		project.setKey(rs.getString("key"));
 		project.setName(rs.getString("name"));
 		return project;
 	}

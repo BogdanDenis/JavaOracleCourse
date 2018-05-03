@@ -23,9 +23,9 @@ public class ProjectController {
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<?> getProject(@PathVariable("id") long id) {
-		ProjectRespDTO res = projectDAO.findById(id);
+	@RequestMapping(value = "/{key}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getProject(@PathVariable("key") String key) {
+		ProjectRespDTO res = projectDAO.findByKey(key);
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
@@ -42,9 +42,9 @@ public class ProjectController {
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(value = "/{id}/sprints", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<?> getProjectsSprints(@PathVariable("id") long id) {
-		List<SprintRespDTO> res = projectDAO.findSprints(id);
+	@RequestMapping(value = "/{key}/sprints", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getProjectsSprints(@PathVariable("key") String key) {
+		List<SprintRespDTO> res = projectDAO.findSprints(key);
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}

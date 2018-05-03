@@ -1,18 +1,18 @@
 package issuetracker.issue;
 
 public class IssueNameDTO {
-	private String id;
+	private String key;
 	private String name;
 	
 	public IssueNameDTO() {}
 	
-	public IssueNameDTO(String id, String name) {
-		this.id = id;
+	public IssueNameDTO(String key, String name) {
+		this.key = key;
 		this.name = name;
 	}
 	
-	public String getId() {
-		return id;
+	public String getKey() {
+		return key;
 	}
 	
 	public String getName() {

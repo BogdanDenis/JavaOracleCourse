@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class IssueRowMapper implements RowMapper<IssueRespDTO> {
 	public IssueRespDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		IssueRespDTO issue = new IssueRespDTO();
-		issue.setId(rs.getString("id"));
+		issue.setKey(rs.getString("key"));
 		issue.setType(rs.getString("type"));
 		issue.setName(rs.getString("name"));
 		issue.setDescription(rs.getString("description"));
@@ -18,7 +18,7 @@ public class IssueRowMapper implements RowMapper<IssueRespDTO> {
 		issue.setStatus(rs.getString("status"));
 		issue.setEstimationOriginal(rs.getInt("estimationOriginal"));
 		issue.setEstimationUsed(rs.getInt("estimationUsed"));
-		issue.setSprintId(rs.getLong("sprintId"));
+		issue.setStoryKey(rs.getString("storyKey"));
 		return issue;
 	}
 }
