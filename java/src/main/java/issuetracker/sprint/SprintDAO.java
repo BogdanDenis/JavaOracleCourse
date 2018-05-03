@@ -20,7 +20,7 @@ public class SprintDAO {
 	public List<SprintRespDTO> findAll() {
 		try {
 			List<SprintRespDTO> res = template.query(
-				"SELECT id, name, isBacklog, isActive, projectId\n" +
+				"SELECT id, name, isBacklog, isActive, projectKey\n" +
 					"FROM Sprint",
 				new SprintRowMapper()
 			);
@@ -31,7 +31,7 @@ public class SprintDAO {
 	}
 	
 	public SprintRespDTO findById(long id) {
-		String SQL = "SELECT id, name, isBacklog, isActive, projectId\n" +
+		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
 					 "FROM Sprint\n" +
 					 "WHERE id = :id";
 		Map params = new HashMap();
@@ -45,15 +45,15 @@ public class SprintDAO {
 	}
 	
 	public SprintRespDTO create(SprintDTO sprintDTO) {
-		String SQL = "INSERT INTO Sprint(name, projectId)\n" +
+		String SQL = "INSERT INTO Sprint(name, projectKey)\n" +
 					 "VALUES(:name, :projectId)";
 		Map params = new HashMap();
 		params.put("name", sprintDTO.getName());
-		params.put("projectId", sprintDTO.getProjectId());
+		params.put("projectKey", sprintDTO.getProjectKey());
 		try {
 			template.update(SQL, params);
 			SprintRespDTO res = template.queryForObject(
-				"SELECT id, name, isActive, isBacklog, projectId\n" +
+				"SELECT id, name, isActive, isBacklog, projectKey\n" +
 					"FROM Sprint\n" +
 					"WHERE id = (SELECT MAX(id) FROM Sprint)",
 				new HashMap<>(),

@@ -4,7 +4,6 @@ FOR EACH ROW
 
 DECLARE
     v_storyissuecount INTEGER;
-    v_projectid INTEGER;
     v_sprintid INTEGER;
     v_storykey VARCHAR2(255);
     v_issuekey VARCHAR2(255);
@@ -18,19 +17,14 @@ BEGIN
           FROM UserStory
           WHERE key = v_storykey);
     
-    SELECT projectId INTO v_projectid
-    FROM (SELECT projectId
+    SELECT projectKey INTO v_projectkey
+    FROM (SELECT projectKey
           FROM Sprint
           WHERE id = v_sprintid);
           
-    SELECT key INTO v_projectkey
-    FROM (SELECT key
-          FROM Project
-          WHERE id = v_projectid AND ROWNUM < 2);
-    
     SELECT storyIssueCount INTO v_storyissuecount
     FROM Project
-    WHERE id = v_projectid;
+    WHERE key = v_projectkey;
     
     v_storyissuecount := v_storyissuecount + 1;
     
@@ -41,5 +35,5 @@ BEGIN
     
     UPDATE Project
     SET storyIssueCount = v_storyissuecount
-    WHERE id = v_projectid;
+    WHERE key = v_projectkey;
 END;

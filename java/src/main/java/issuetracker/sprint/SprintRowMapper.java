@@ -13,7 +13,7 @@ public class SprintRowMapper implements RowMapper<SprintRespDTO> {
 		sprint.setName(rs.getString("name"));
 		sprint.setIsBacklog(rs.getInt("isBacklog"));
 		sprint.setIsActive(rs.getInt("isActive"));
-		sprint.setProjectId(rs.getLong("projectId"));
+		sprint.setProjectKey(rs.getString("projectKey"));
 		return sprint;
 	}
 }

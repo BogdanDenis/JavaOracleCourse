@@ -11,11 +11,14 @@ AFTER INSERT ON Project
 FOR EACH ROW
 
 DECLARE
-    v_projectid INTEGER;
+    v_projectkey VARCHAR2(100);
 BEGIN
-    SELECT :new.id INTO v_projectid FROM dual;
-    INSERT INTO Sprint(name, isBacklog, isActive, projectId)
-    VALUES('Backlog', 1, 0, v_projectid);
-    UPDATE Sprint SET isActive = 0
+    SELECT :new.key INTO v_projectkey FROM dual;
+    INSERT INTO Sprint(name, projectKey)
+    VALUES('Backlog', v_projectkey);
+    
+    UPDATE Sprint
+    SET isActive = 0,
+        isBacklog = 1
     WHERE id = (SELECT MAX(id) FROM Sprint);
 END;

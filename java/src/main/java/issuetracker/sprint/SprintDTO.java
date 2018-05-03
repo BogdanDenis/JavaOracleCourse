@@ -2,13 +2,13 @@ package issuetracker.sprint;
 
 public class SprintDTO {
 	private String name;
-	private long projectId;
+	private String projectKey;
 	
 	public SprintDTO() {}
 	
-	public SprintDTO(String name, long projectId) {
+	public SprintDTO(String name, String projectKey) {
 		this.name = name;
-		this.projectId = projectId;
+		this.projectKey = projectKey;
 	}
 	
 	public String getName() {
@@ -19,11 +19,11 @@ public class SprintDTO {
 		this.name = name;
 	}
 	
-	public long getProjectId() {
-		return projectId;
+	public String getProjectKey() {
+		return projectKey;
 	}
 	
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
+	public void setProjectKey(String projectKey) {
+		this.projectKey = projectKey;
 	}
 }

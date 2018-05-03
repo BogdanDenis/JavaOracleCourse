@@ -58,16 +58,41 @@ public class ProjectDAO {
 	}
 	
 	public List<SprintRespDTO> findSprints(String key) {
-		String SQL = "SELECT id, name, projectId\n" +
-					"FROM Sprint\n" +
-					"WHERE projectId = (SELECT id\n" +
-									   "FROM Project\n" +
-									   "WHERE key = :key)\n" +
-						"AND isBacklog = 0";
+		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+					 "FROM Sprint\n" +
+					 "WHERE projectKey = :key AND isBacklog = 0";
 		Map params = new HashMap();
 		params.put("key", key);
 		try {
 			List<SprintRespDTO> res = template.query(SQL, params, new SprintRowMapper());
+			return res;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public SprintRespDTO findActiveSprint(String key) {
+		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+					 "FROM Sprint\n" +
+					 "WHERE projectKey = :key AND isBacklog = 0 AND isActive = 1";
+		Map params = new HashMap();
+		params.put("key", key);
+		try {
+			SprintRespDTO res = template.queryForObject(SQL, params, new SprintRowMapper());
+			return res;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public SprintRespDTO findBacklog(String key) {
+		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+					 "FROM Sprint\n" +
+					 "WHERE projectKey = :key AND isBacklog = 1";
+		Map params = new HashMap();
+		params.put("key", key);
+		try {
+			SprintRespDTO res = template.queryForObject(SQL, params, new SprintRowMapper());
 			return res;
 		} catch (Exception e) {
 			return null;

@@ -5,16 +5,16 @@ public class SprintRespDTO {
 	private String name;
 	private int isBacklog;
 	private int isActive;
-	private long projectId;
+	private String projectKey;
 	
 	public SprintRespDTO() {}
 	
-	public SprintRespDTO(long id, String name, int isBacklog, int isActive, long projectId) {
+	public SprintRespDTO(long id, String name, int isBacklog, int isActive, String projectKey) {
 		this.id = id;
 		this.name = name;
 		this.isBacklog = isBacklog;
 		this.isActive = isActive;
-		this.projectId = projectId;
+		this.projectKey = projectKey;
 	}
 	
 	public long getId() {
@@ -49,11 +49,11 @@ public class SprintRespDTO {
 		this.isActive = isActive;
 	}
 	
-	public long getProjectId() {
-		return projectId;
+	public String getProjectKey() {
+		return projectKey;
 	}
 	
-	public void setProjectId(long projectId) {
-		this.projectId = projectId;
+	public void setProjectKey(String projectKey) {
+		this.projectKey = projectKey;
 	}
 }

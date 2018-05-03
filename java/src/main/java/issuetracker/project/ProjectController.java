@@ -48,6 +48,24 @@ public class ProjectController {
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
-		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/{key}/activeSprint", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getProjectsActiveSprint(@PathVariable("key") String key) {
+		SprintRespDTO res = projectDAO.findActiveSprint(key);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/{key}/backlog", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getProjectsBacklog(@PathVariable("key") String key) {
+		SprintRespDTO res = projectDAO.findBacklog(key);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

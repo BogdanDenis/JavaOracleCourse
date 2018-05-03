@@ -3,6 +3,6 @@ CREATE TABLE Sprint(
     name VARCHAR2(255) NOT NULL,
     isBacklog NUMBER(1, 0) NOT NULL,
     isActive NUMBER(1, 0) NOT NULL,
-    projectId INTEGER NOT NULL,
-    CONSTRAINT fk_project FOREIGN KEY (projectId) REFERENCES Project(id)    
+    projectKey VARCHAR2(100) NOT NULL,
+    CONSTRAINT fk_sprint_project FOREIGN KEY (projectKey) REFERENCES Project(key)    
 );
