@@ -5,6 +5,7 @@ import {
   CommonHeader,
 } from '../../components';
 import { ProjectsListContainer } from './components';
+import * as routes from '../../constants';
 
 import './projects.sass';
 
@@ -12,7 +13,7 @@ export class Projects extends Component {
   static get propTypes() {
     return {
       getProjects: PropTypes.func.isRequired,
-      saveViewedProject: PropTypes.func.isRequired,
+      getViewedProject: PropTypes.func.isRequired,
       projects: PropTypes.array,
     };
   }
@@ -29,9 +30,9 @@ export class Projects extends Component {
     this.onProjectSelect = this.onProjectSelect.bind(this);
   }
 
-  onProjectSelect(id) {
-    console.log(id);
-    this.props.saveViewedProject(id);
+  onProjectSelect(key) {
+    this.props.getViewedProject(key);
+    this.props.history.push(`${routes.PROJECT_ROUTE}/${key}`);
   }
 
   render() {

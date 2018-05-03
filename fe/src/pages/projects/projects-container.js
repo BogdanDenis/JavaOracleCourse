@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import { Projects } from './projects';
-import { saveViewedProject } from '../../actions';
+import { getViewedProject } from '../../actions';
 
 const mapDispatchToProps = {
-  saveViewedProject,
+  getViewedProject,
 };
 
 export const ProjectsContainer = connect(

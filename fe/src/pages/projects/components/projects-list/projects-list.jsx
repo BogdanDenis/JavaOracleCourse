@@ -42,7 +42,7 @@ export class ProjectsList extends Component {
           {
             projects.map((project) => {
               return (
-                <tr onClick={() => onProjectClick(project.id)}>
+                <tr onClick={() => onProjectClick(project.key)}>
                   <td>{project.key}</td>
                   <td>{project.name}</td>
                 </tr>

@@ -8,7 +8,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../build')
+    path: path.resolve(__dirname, '../build'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx']
@@ -80,7 +81,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       'src/index.html',
-      'src/assets',
+      'src/assets/',
     ]),
     new ExtractTextPlugin('styles.css')
   ],
