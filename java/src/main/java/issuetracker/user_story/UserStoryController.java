@@ -1,5 +1,6 @@
 package issuetracker.user_story;
 
+import issuetracker.issue.IssueRespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -56,6 +57,15 @@ public class UserStoryController {
 			consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeDescription(@RequestBody UserStoryDescriptionDTO userStoryDescriptionDTO) {
 		UserStoryRespDTO res = userStoryDAO.changeDescription(userStoryDescriptionDTO);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/{key}/issues", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<?> getStoriesIssues(@PathVariable("key") String key) {
+		List<IssueRespDTO> res = userStoryDAO.findStoriesIssues(key);
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}

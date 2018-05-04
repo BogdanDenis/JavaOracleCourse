@@ -1,5 +1,7 @@
 package issuetracker.user_story;
 
+import issuetracker.issue.IssueRespDTO;
+import issuetracker.issue.IssueRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -88,6 +90,20 @@ public class UserStoryDAO {
 		try {
 			template.update(SQL, params);
 			UserStoryRespDTO res = this.findByKey(userStoryDescriptionDTO.getKey());
+			return res;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public List<IssueRespDTO> findStoriesIssues(String key) {
+		String SQL = "SELECT key, type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, storyKey\n" +
+					 "FROM Issue\n" +
+					 "WHERE storyKey = :key";
+		Map params = new HashMap();
+		params.put("key", key);
+		try {
+			List<IssueRespDTO> res = template.query(SQL, params, new IssueRowMapper());
 			return res;
 		} catch (Exception e) {
 			return null;
