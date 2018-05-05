@@ -8,7 +8,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, '../build')
+    path: path.resolve(__dirname, '../build'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx']
@@ -40,7 +41,14 @@ module.exports = {
         }
       },
       {
-        test: /\.(css|less)$/,
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
+        })
+      },
+      {
+        test: /\.(css|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -48,12 +56,6 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 url: false
-              }
-            },
-            {
-              loader: 'less-loader',
-              options: {
-                minimize: true
               }
             },
             {
@@ -66,7 +68,7 @@ module.exports = {
               }
             },
             {
-              loader: 'less-loader',
+              loader: 'sass-loader',
               options: {
                 sourceMap: true
               }
@@ -79,7 +81,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       'src/index.html',
-      'src/assets',
+      'src/assets/',
     ]),
     new ExtractTextPlugin('styles.css')
   ],

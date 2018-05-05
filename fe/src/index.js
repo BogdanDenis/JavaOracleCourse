@@ -11,7 +11,7 @@ import {
   applyMiddleware,
 } from 'redux';
 
-import 'font-awesome/less/font-awesome.less';
+import 'font-awesome/scss/font-awesome.scss';
 
 import App from './app';
 import { RootReducer } from './reducers';
@@ -23,8 +23,6 @@ const createStoreWithMiddleware = applyMiddleware(
   apiMiddleware,
   thunk,
 )(createStore);
-
-
 
 const store = createStoreWithMiddleware(
   RootReducer,
