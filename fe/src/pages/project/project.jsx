@@ -6,6 +6,7 @@ import {
   CommonHeader,
   StoryList,
   CreateSprintModalContainer,
+  UserStoryContainer,
 } from '../../components';
 
 import './project.sass';
@@ -39,9 +40,11 @@ export class Project extends Component {
       backlogIsLoaded: false,
       sprintIsLoaded: false,
       createSprintModalVisible: false,
+      viewedStoryKey: '',
     };
 
     this.toggleCreateSprintModal = this.toggleCreateSprintModal.bind(this);
+    this.saveViewedUserStoryKey = this.saveViewedUserStoryKey.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +93,10 @@ export class Project extends Component {
     this.setState({ createSprintModalVisible: !createSprintModalVisible });
   }
 
+  saveViewedUserStoryKey(key) {
+    this.setState({ viewedStoryKey: key });
+  }
+
   renderSprintStories() {
     const {
       sprint,
@@ -104,7 +111,7 @@ export class Project extends Component {
               <section className="sprint__stories">
               <StoryList
                 stories={sprint.stories}
-                onStoryClick={(key) => console.log(key)}
+                onStoryClick={this.saveViewedUserStoryKey}
               />
               </section>
             </Fragment>
@@ -132,6 +139,7 @@ export class Project extends Component {
     } = this.props;
     const {
       createSprintModalVisible,
+      viewedStoryKey,
     } = this.state;
 
     return (
@@ -147,13 +155,15 @@ export class Project extends Component {
                 <section className="backlog__stories">
                   <StoryList
                     stories={backlog.stories}
-                    onStoryClick={(key) => console.log(key)}
+                    onStoryClick={this.saveViewedUserStoryKey}
                   />
                 </section>
               </section>
             </div>
             <div className="project__wrapper__viewed-story">
-              
+              <UserStoryContainer
+                storyKey={viewedStoryKey}
+              />
             </div>
           </div>
         </section>

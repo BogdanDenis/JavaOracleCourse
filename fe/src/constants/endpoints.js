@@ -5,3 +5,5 @@ export const GET_PROJECT_BACKLOG = projectKey => `http://localhost:8080/v1/proje
 export const GET_PROJECT_ACTIVE_SPRINT = projectKey => `http://localhost:8080/v1/project/${projectKey}/activeSprint`;
 export const GET_SPRINTS_STORIES = sprintId => `http://localhost:8080/v1/sprint/${sprintId}/stories`;
 export const CREATE_SPRINT = 'http://localhost:8080/v1/sprint';
+export const GET_USER_STORY = storyKey => `http://localhost:8080/v1/userstory/${storyKey}`;
+export const GET_STORIES_ISSUES = storyKey => `http://localhost:8080/v1/userstory/${storyKey}/issues`;

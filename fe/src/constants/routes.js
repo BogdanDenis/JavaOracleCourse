@@ -5,3 +5,4 @@ export const MY_PROJECTS_ROUTE = '/my-projects';
 export const MY_ISSUES_ROUTE = '/my-issues';
 export const REPORTED_BY_ME_ROUTE = '/reported-by-me';
 export const PROJECT_ROUTE = '/project';
+export const STORY_ROUTE = '/story';
