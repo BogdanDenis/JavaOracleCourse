@@ -7,3 +7,5 @@ export const GET_SPRINTS_STORIES = sprintId => `http://localhost:8080/v1/sprint/
 export const CREATE_SPRINT = 'http://localhost:8080/v1/sprint';
 export const GET_USER_STORY = storyKey => `http://localhost:8080/v1/userstory/${storyKey}`;
 export const GET_STORIES_ISSUES = storyKey => `http://localhost:8080/v1/userstory/${storyKey}/issues`;
+export const CHANGE_STORY_NAME = 'http://localhost:8080/v1/userstory/changeName';
+export const CHANGE_STORY_DESCRIPTION = 'http://localhosy:8080/v1/userstory/changeDescription';

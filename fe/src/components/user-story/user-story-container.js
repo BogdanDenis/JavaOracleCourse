@@ -4,6 +4,8 @@ import { UserStory } from './user-story';
 import {
   getViewedStory,
   getStoriesIssues,
+  changeStoryName,
+  changeStoryDescription,
 } from '../../actions';
 import {
   selectViewedStory,
@@ -16,6 +18,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getViewedStory,
   getStoriesIssues,
+  changeStoryName,
+  changeStoryDescription,
 };
 
 export const UserStoryContainer = connect(

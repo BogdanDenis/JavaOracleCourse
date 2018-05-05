@@ -8,6 +8,9 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+import {
+  InputWithSave,
+} from '../../components';
 import { STORY_ROUTE } from '../../constants';
 
 export class UserStory extends Component {
@@ -15,6 +18,8 @@ export class UserStory extends Component {
     return {
       getViewedStory: PropTypes.func.isRequired,
       getStoriesIssues: PropTypes.func.isRequired,
+      changeStoryName: PropTypes.func.isRequired,
+      changeStoryDescription: PropTypes.func.isRequired,
       userStory: PropTypes.object,
       storyKey: PropTypes.string.isRequired,
     };
@@ -61,28 +66,24 @@ export class UserStory extends Component {
     this.checkStoryUpdate(nextProps);
   }
 
-  saveUserStoryName(e) {
-    const { value } = e.target;
+  saveUserStoryName() {
     const { userStory } = this.state;
+    const userStoryDTO = {
+      key: userStory.key,
+      name: userStory.name,
+    };
 
-    this.setState({
-      userStory: {
-        ...userStory,
-        name: value,
-      },
-    });
+    this.props.changeStoryName(userStoryDTO);
   }
 
-  saveUserStoryDescription(e) {
-    const { value } = e.target;
+  saveUserStoryDescription() {
     const { userStory } = this.state;
+    const userStoryDTO = {
+      key: userStory.key,
+      description: userStory.description,
+    };
 
-    this.setState({
-      userStory: {
-        ...userStory,
-        description: value,
-      },
-    });
+    this.props.changeStoryDescription(userStoryDTO);
   }
 
   render() {
@@ -95,6 +96,29 @@ export class UserStory extends Component {
         <h4 className="user-story__key">
           <Link to={`${STORY_ROUTE}/${userStory.key}`}>{userStory.key}</Link>
         </h4>
+        <section className="user-story__form">
+          <InputWithSave
+            scope={userStory}
+            type="text"
+            name="name"
+            label="Name"
+            placeholder="User story name"
+            onInputChange={(userStory) => this.setState({ userStory })}
+            onChangeSave={this.saveUserStoryName}
+            onChangeCancel={(userStory) => this.setState({ userStory })}
+          />
+          <InputWithSave
+            scope={userStory}
+            type="text"
+            name="description"
+            label="Description"
+            placeholder="User story description"
+            componentClass="textarea"
+            onInputChange={(userStory) => this.setState({ userStory })}
+            onChangeSave={this.saveUserStoryDescription}
+            onChangeCancel={(userStory) => this.setState({ userStory })}
+          />
+        </section>
         
       </section>
     );

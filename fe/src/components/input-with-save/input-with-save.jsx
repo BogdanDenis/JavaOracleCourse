@@ -50,9 +50,10 @@ export class InputWithSave extends Component {
   componentWillReceiveProps(nextProps) {
     const {
       scope,
+      name,
     } = nextProps;
 
-    if (Object.keys(scope).length && !this.originalScopeInitialized) {
+    if (scope[name] && !this.originalScopeInitialized) {
       this.setState({ originalScope: {...scope} });
       this.originalScopeInitialized = true;
     }
