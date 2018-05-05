@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import {
   CommonHeader,
   StoryList,
+  CreateSprintModalContainer,
 } from '../../components';
 
 import './project.sass';
@@ -37,7 +38,10 @@ export class Project extends Component {
       projectIsLoaded: false,
       backlogIsLoaded: false,
       sprintIsLoaded: false,
+      createSprintModalVisible: false,
     };
+
+    this.toggleCreateSprintModal = this.toggleCreateSprintModal.bind(this);
   }
 
   componentDidMount() {
@@ -70,12 +74,48 @@ export class Project extends Component {
     }
   }
 
+  toggleCreateSprintModal() {
+    const {
+      createSprintModalVisible,
+    } = this.state;
+
+    this.setState({ createSprintModalVisible: !createSprintModalVisible });
+  }
+
+  renderSprintStories() {
+    const {
+      sprint,
+    } = this.props;
+
+    return (
+      sprint.id ?
+        <StoryList
+          stories={sprint.stories}
+          onStoryClick={(key) => console.log(key)}
+        />
+        :
+        <div className="project__sprint__create">
+          <p className="project__sprint__create__title">
+            Don't have an active sprint?
+          </p>
+          <Button
+            onClick={this.toggleCreateSprintModal}
+          >
+            Create
+          </Button>
+        </div>
+    );
+  }
+
   render() {
     const {
       project,
       backlog,
       sprint,
     } = this.props;
+    const {
+      createSprintModalVisible,
+    } = this.state;
 
     return (
       <section className="project-page">
@@ -83,20 +123,7 @@ export class Project extends Component {
         <section className="project">
           <h2 className="project__name">{project.name}</h2>
           <section className="project__sprint">
-            {
-              sprint.id ?
-                <StoryList
-                  stories={sprint.stories}
-                  onStoryClick={(key) => console.log(key)}
-                />
-                :
-                <div className="project__sprint__create">
-                  <p className="project__sprint__create__title">
-                    Don't have an active sprint?
-                  </p>
-                  <Button>Create</Button>
-                </div>
-            }
+            {this.renderSprintStories()}
           </section>
           <section className="project__backlog">
             <StoryList
@@ -105,6 +132,12 @@ export class Project extends Component {
             />
           </section>
         </section>
+        <CreateSprintModalContainer
+          projectKey={project.key}
+          isVisible={createSprintModalVisible}
+          onCancel={this.toggleCreateSprintModal}
+          onSubmit={this.toggleCreateSprintModal}
+        />
       </section>
     );
   }
