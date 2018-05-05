@@ -6,6 +6,7 @@ import {
   getProjectBacklog,
   getProjectActiveSprint,
   getSprintsStories,
+  getProjectsDevelopers,
 } from '../../actions';
 import {
   selectViewedProject,
@@ -24,6 +25,7 @@ const mapDispatchToProps = {
   getProjectBacklog,
   getProjectActiveSprint,
   getSprintsStories,
+  getProjectsDevelopers,
 };
 
 export const ProjectContainer = connect(

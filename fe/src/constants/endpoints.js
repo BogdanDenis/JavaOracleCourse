@@ -8,4 +8,5 @@ export const CREATE_SPRINT = 'http://localhost:8080/v1/sprint';
 export const GET_USER_STORY = storyKey => `http://localhost:8080/v1/userstory/${storyKey}`;
 export const GET_STORIES_ISSUES = storyKey => `http://localhost:8080/v1/userstory/${storyKey}/issues`;
 export const CHANGE_STORY_NAME = 'http://localhost:8080/v1/userstory/changeName';
-export const CHANGE_STORY_DESCRIPTION = 'http://localhosy:8080/v1/userstory/changeDescription';
+export const CHANGE_STORY_DESCRIPTION = 'http://localhost:8080/v1/userstory/changeDescription';
+export const GET_PROJECTS_DEVELOPERS = projectKey => `http://localhost:8080/v1/workload/project/${projectKey}`;

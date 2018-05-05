@@ -1,0 +1,45 @@
+@import "../../../../assets/styles/variables.sass"
+  
+.issue-list__item
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+  align-items: flex-start
+
+  padding: .5rem 2% .5rem 1%
+  border: 1px solid $dark-blue
+
+  &:hover
+    cursor: pointer
+
+  &.closed
+    .issue-list__item__info__key
+      text-decoration: line-through
+
+  &__info
+    &__type
+      &.task
+        color: $dark-blue
+      &.bug
+        color: $crimson
+
+    &__key
+      color: $light-blue
+
+    &__name
+
+    &__assignee
+
+    &__type,
+    &__key,
+    &__name,
+    &__assignee
+      margin: 5px 5px
+
+  &__estimation
+    margin: 3px 0 0 0
+    padding: 0 6%
+
+    &__original,
+    &__left
+      margin: 0 3px

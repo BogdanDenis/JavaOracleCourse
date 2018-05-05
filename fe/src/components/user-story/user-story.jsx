@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 
 import {
   InputWithSave,
+  IssueList,
 } from '../../components';
 import { STORY_ROUTE } from '../../constants';
 
@@ -21,6 +22,7 @@ export class UserStory extends Component {
       changeStoryName: PropTypes.func.isRequired,
       changeStoryDescription: PropTypes.func.isRequired,
       userStory: PropTypes.object,
+      developers: PropTypes.array,
       storyKey: PropTypes.string.isRequired,
     };
   }
@@ -28,6 +30,7 @@ export class UserStory extends Component {
   static get defaultProps() {
     return {
       userStory: {},
+      developers: [],
     };
   }
 
@@ -119,7 +122,13 @@ export class UserStory extends Component {
             onChangeCancel={(userStory) => this.setState({ userStory })}
           />
         </section>
-        
+        <section className="user-story__issues">
+          <h4 className="user-story__issues__title">Issues</h4>
+          <IssueList
+            issues={userStory.issues}
+            onIssueClick={(key) => console.log(key)}
+          />
+        </section>
       </section>
     );
   }

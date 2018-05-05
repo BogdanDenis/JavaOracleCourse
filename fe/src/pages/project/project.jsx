@@ -18,6 +18,7 @@ export class Project extends Component {
       getProjectActiveSprint: PropTypes.func.isRequired,
       getProjectBacklog: PropTypes.func.isRequired,
       getSprintsStories: PropTypes.func.isRequired,
+      getProjectsDevelopers: PropTypes.func.isRequired,
       project: PropTypes.object,
       sprint: PropTypes.object,
       backlog: PropTypes.object,
@@ -39,6 +40,7 @@ export class Project extends Component {
       projectIsLoaded: false,
       backlogIsLoaded: false,
       sprintIsLoaded: false,
+      developersAreLoaded: false,
       createSprintModalVisible: false,
       viewedStoryKey: '',
     };
@@ -59,12 +61,14 @@ export class Project extends Component {
       const {
         getProjectBacklog,
         getProjectActiveSprint,
+        getProjectsDevelopers,
       } = this.props;
 
       const { key } = nextProps.project;
 
       getProjectBacklog(key);
       getProjectActiveSprint(key);
+      getProjectsDevelopers(key);
       this.setState({ projectIsLoaded: true });
     }
 

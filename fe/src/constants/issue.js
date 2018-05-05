@@ -7,4 +7,6 @@ export const ISSUE_STATUSES = {
 
 export const ISSUE_TYPE_ICONS = {
   UserStory: 'fa-book',
+  Task: 'fa-pencil-square-o',
+  Bug: 'fa-exclamation-circle',
 };

@@ -6,4 +6,6 @@ export * from './get-project-backlog';
 export * from './save-project-backlog';
 export * from './get-project-active-sprint';
 export * from './save-project-active-sprint';
+export * from './get-projects-developers';
+export * from './save-projects-developers';
 export * from './types';
