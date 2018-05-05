@@ -1,0 +1,24 @@
+@import "../../../../assets/styles/variables.sass"
+  
+.story-list__item
+  padding: 1rem 2% 1rem 1%
+  border: 1px solid $dark-blue
+
+  &:hover
+    cursor: pointer
+
+  &.closed
+    .story-list__item__info__key
+      text-decoration: line-through
+
+  &__info
+    &__type
+      color: $green
+    
+    &__key
+      color: $light-blue
+
+    &__type,
+    &__key,
+    &__name,
+      margin: 5px 5px

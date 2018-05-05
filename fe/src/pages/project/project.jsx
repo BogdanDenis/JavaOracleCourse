@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
 
@@ -72,6 +72,14 @@ export class Project extends Component {
       getSprintsStories(id);
       this.setState({ backlogIsLoaded: true });
     }
+
+    if (this.props.sprint !== nextProps.sprint && nextProps.sprint.id && !this.state.sprintIsLoaded) {
+      const { getSprintsStories } = this.props;
+      const { id } = nextProps.sprint;
+
+      getSprintsStories(id);
+      this.setState({ sprintIsLoaded: true });
+    }
   }
 
   toggleCreateSprintModal() {
@@ -88,22 +96,31 @@ export class Project extends Component {
     } = this.props;
 
     return (
-      sprint.id ?
-        <StoryList
-          stories={sprint.stories}
-          onStoryClick={(key) => console.log(key)}
-        />
-        :
-        <div className="project__sprint__create">
-          <p className="project__sprint__create__title">
-            Don't have an active sprint?
-          </p>
-          <Button
-            onClick={this.toggleCreateSprintModal}
-          >
-            Create
-          </Button>
-        </div>
+      <section className="sprint">      
+        {
+          sprint.id ?
+            <Fragment>
+              <h3 className="sprint__title">{sprint.name}</h3>
+              <section className="sprint__stories">
+              <StoryList
+                stories={sprint.stories}
+                onStoryClick={(key) => console.log(key)}
+              />
+              </section>
+            </Fragment>
+            :
+            <div className="sprint__create">
+              <p className="sprint__create__title">
+                Don't have an active sprint?
+              </p>
+              <Button
+                onClick={this.toggleCreateSprintModal}
+              >
+                Create
+              </Button>
+            </div>
+        }
+      </section>
     );
   }
 
@@ -122,15 +139,23 @@ export class Project extends Component {
         <CommonHeader />
         <section className="project">
           <h2 className="project__name">{project.name}</h2>
-          <section className="project__sprint">
-            {this.renderSprintStories()}
-          </section>
-          <section className="project__backlog">
-            <StoryList
-              stories={backlog.stories}
-              onStoryClick={(key) => console.log(key)}
-            />
-          </section>
+          <div className="project__wrapper">
+            <div className="project__wrapper__sprint-backlog">
+              {this.renderSprintStories()}
+              <section className="backlog">
+                <h3 className="backlog__title">{backlog.name}</h3>
+                <section className="backlog__stories">
+                  <StoryList
+                    stories={backlog.stories}
+                    onStoryClick={(key) => console.log(key)}
+                  />
+                </section>
+              </section>
+            </div>
+            <div className="project__wrapper__viewed-story">
+              
+            </div>
+          </div>
         </section>
         <CreateSprintModalContainer
           projectKey={project.key}

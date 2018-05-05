@@ -16,7 +16,7 @@ export const getProjectActiveSprint = projectKey => (dispatch) => {
           payload: (_, __, res) => {
             res.json()
               .then(sprint => {
-                saveProjectActiveSprint(sprint);
+                dispatch(saveProjectActiveSprint(sprint));
               });
           },
         },

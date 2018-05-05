@@ -5,7 +5,9 @@ import classnames from 'classnames';
 import {
   ISSUE_STATUSES,
   ISSUE_TYPE_ICONS,
-} from '../../../constants';
+} from '../../../../constants';
+
+import './story-list-item.sass';
 
 export const StoryListItem = ({
   storykey,

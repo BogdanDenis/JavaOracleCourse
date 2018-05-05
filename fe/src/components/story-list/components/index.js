@@ -1,1 +1,1 @@
-export * from './story-list-item';
+export * from './story-list-item/story-list-item';
