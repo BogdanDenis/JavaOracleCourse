@@ -46,7 +46,7 @@ public class SprintDAO {
 	
 	public SprintRespDTO create(SprintDTO sprintDTO) {
 		String SQL = "INSERT INTO Sprint(name, projectKey)\n" +
-					 "VALUES(:name, :projectId)";
+					 "VALUES(:name, :projectKey)";
 		Map params = new HashMap();
 		params.put("name", sprintDTO.getName());
 		params.put("projectKey", sprintDTO.getProjectKey());

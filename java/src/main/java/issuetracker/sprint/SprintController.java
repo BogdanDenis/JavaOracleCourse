@@ -49,6 +49,6 @@ public class SprintController {
 		if (res != null) {
 			return new ResponseEntity<>(res, HttpStatus.OK);
 		}
-		return new ResponseEntity<>("", HttpStatus.OK);
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
