@@ -51,4 +51,13 @@ public class SprintController {
 		}
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@RequestMapping(value = "/{id}/startSprint", method = RequestMethod.PATCH, produces = "application/json")
+	public ResponseEntity<?> startSprint(@PathVariable("id") long id) {
+		SprintRespDTO res = sprintDAO.startSprint(id);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
