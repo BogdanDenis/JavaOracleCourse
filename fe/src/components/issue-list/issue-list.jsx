@@ -25,15 +25,18 @@ export class IssueList extends Component {
     } = this.props;
 
     return (
-      issues.map(issue => {
-        return (
-          <IssueListItem
-            issue={issue}
-            assigneeName={issue.assigneeId.toString()}
-            onItemClick={() => onIssueClick(issue.key)}
-          />
-        );
-      })
+      issues.length ?
+        issues.map(issue => {
+          return (
+            <IssueListItem
+              issue={issue}
+              assigneeName={issue.assigneeId.toString()}
+              onItemClick={() => onIssueClick(issue.key)}
+            />
+          );
+        })
+        :
+        <p>No issues in this user story</p>
     );
   }
 };

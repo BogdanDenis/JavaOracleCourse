@@ -7,3 +7,4 @@ export * from './modal-window/modal-window';
 export * from './create-sprint-modal/create-sprint-modal-container';
 export * from './input-with-save/input-with-save';
 export * from './user-story/user-story-container';
+export * from './complete-sprint-modal/complete-sprint-modal-container';

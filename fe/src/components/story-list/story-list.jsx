@@ -25,16 +25,19 @@ export class StoryList extends Component {
     } = this.props;
 
     return (
-      stories.map(story => {
-        return (
-          <StoryListItem
-            storykey={story.key}
-            name={story.name}
-            status={story.status}
-            onItemClick={() => onStoryClick(story.key)}
-          />
-        );
-      })
+      stories.length ? 
+        stories.map(story => {
+          return (
+            <StoryListItem
+              storykey={story.key}
+              name={story.name}
+              status={story.status}
+              onItemClick={() => onStoryClick(story.key)}
+            />
+          );
+        })
+        :
+        <p>No stories in this sprint</p>
     );
   }
 }

@@ -7,6 +7,7 @@ import {
   StoryList,
   CreateSprintModalContainer,
   UserStoryContainer,
+  CompleteSprintModalContainer,
 } from '../../components';
 
 import './project.sass';
@@ -42,10 +43,12 @@ export class Project extends Component {
       sprintIsLoaded: false,
       developersAreLoaded: false,
       createSprintModalVisible: false,
+      completeSprintModalVisible: false,
       viewedStoryKey: '',
     };
 
     this.toggleCreateSprintModal = this.toggleCreateSprintModal.bind(this);
+    this.toggleCompleteSprintModal = this.toggleCompleteSprintModal.bind(this);
     this.saveViewedUserStoryKey = this.saveViewedUserStoryKey.bind(this);
   }
 
@@ -97,6 +100,14 @@ export class Project extends Component {
     this.setState({ createSprintModalVisible: !createSprintModalVisible });
   }
 
+  toggleCompleteSprintModal() {
+    const {
+      completeSprintModalVisible,
+    } = this.state;
+
+    this.setState({ completeSprintModalVisible: !completeSprintModalVisible });
+  }
+
   saveViewedUserStoryKey(key) {
     this.setState({ viewedStoryKey: key });
   }
@@ -111,7 +122,15 @@ export class Project extends Component {
         {
           sprint.id ?
             <Fragment>
-              <h3 className="sprint__title">{sprint.name}</h3>
+              <h3 className="sprint__header">
+                <span className="sprint__header__title">{sprint.name}</span>
+                <Button
+                  className="sprint__header__complete"
+                  onClick={this.toggleCompleteSprintModal}
+                >
+                  Complete sprint
+              </Button>
+              </h3>
               <section className="sprint__stories">
               <StoryList
                 stories={sprint.stories}
@@ -143,6 +162,7 @@ export class Project extends Component {
     } = this.props;
     const {
       createSprintModalVisible,
+      completeSprintModalVisible,
       viewedStoryKey,
     } = this.state;
 
@@ -176,6 +196,11 @@ export class Project extends Component {
           isVisible={createSprintModalVisible}
           onCancel={this.toggleCreateSprintModal}
           onSubmit={this.toggleCreateSprintModal}
+        />
+        <CompleteSprintModalContainer
+          isVisible={completeSprintModalVisible}
+          sprint={sprint}
+          onClose={this.toggleCompleteSprintModal}
         />
       </section>
     );

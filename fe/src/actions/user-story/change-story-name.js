@@ -12,7 +12,7 @@ export const changeStoryName = userStory => (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ userStory }),
+      body: JSON.stringify(userStory),
       types: [
         types.CHANGE_STORY_NAME_REQUEST,
         {

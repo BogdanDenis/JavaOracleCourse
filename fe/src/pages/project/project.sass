@@ -1,3 +1,6 @@
+$border: 1px solid black
+$padding: 10px 2%
+
 .project-page
   .project
     padding: 0 4%
@@ -10,10 +13,28 @@
       justify-content: space-between
 
       &__sprint-backlog
+        border: $border
         max-width: 40%
+        margin: 0 10px 0 0
+        padding: $padding
         flex-grow: 1
 
+        .sprint
+          &__header
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
+
+            font-size: 19px
+
+            &__complete
+              font-size: 12px
+
       &__viewed-story
+        border: $border
+        margin: 0 0 0 10px
+        padding: $padding
         max-width: 60%
         flex-grow: 3
       
