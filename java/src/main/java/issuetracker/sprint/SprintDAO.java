@@ -99,4 +99,19 @@ public class SprintDAO {
 			return null;
 		}
 	}
+	
+	public SprintRespDTO completeSprint(long id) {
+		String SQL = "UPDATE Sprint\n" +
+					 "SET isActive = 0\n" +
+					 "WHERE id = :id";
+		Map params = new HashMap();
+		params.put("id", id);
+		try {
+			template.update(SQL, params);
+			SprintRespDTO res = this.findById(id);
+			return res;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }
