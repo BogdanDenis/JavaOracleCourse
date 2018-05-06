@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { UserStory } from './user-story';
@@ -6,6 +7,7 @@ import {
   getStoriesIssues,
   changeStoryName,
   changeStoryDescription,
+  changeStoryStatus,
 } from '../../actions';
 import {
   selectViewedStory,
@@ -20,6 +22,7 @@ const mapDispatchToProps = {
   getStoriesIssues,
   changeStoryName,
   changeStoryDescription,
+  changeStoryStatus,
 };
 
 export const UserStoryContainer = connect(

@@ -8,4 +8,6 @@ export * from './get-project-active-sprint';
 export * from './save-project-active-sprint';
 export * from './get-projects-developers';
 export * from './save-projects-developers';
+export * from './get-projects-sprints';
+export * from './save-projects-sprints';
 export * from './types';

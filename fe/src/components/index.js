@@ -8,3 +8,4 @@ export * from './create-sprint-modal/create-sprint-modal-container';
 export * from './input-with-save/input-with-save';
 export * from './user-story/user-story-container';
 export * from './complete-sprint-modal/complete-sprint-modal-container';
+export * from './select-with-save/select-with-save';

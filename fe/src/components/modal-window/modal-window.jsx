@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Modal,
+  Button,
 } from 'react-bootstrap';
 
 export class ModalWindow extends Component {
@@ -9,6 +10,7 @@ export class ModalWindow extends Component {
     return {
       isVisible: PropTypes.bool,
       title: PropTypes.string,
+      onClose: PropTypes.func,
     };
   }
 
@@ -16,6 +18,7 @@ export class ModalWindow extends Component {
     return {
       isVisible: false,
       title: '',
+      onClose: () => {},
     };
   }
 
@@ -23,6 +26,7 @@ export class ModalWindow extends Component {
     const {
       isVisible,
       title,
+      onClose,
       children,
     } = this.props;
 
@@ -33,7 +37,15 @@ export class ModalWindow extends Component {
           && 
           <Modal.Dialog>
             <Modal.Header>
-              <Modal.Title>{title}</Modal.Title>
+              <Modal.Title>
+                {title}
+                <Button
+                  className="close"
+                  onClick={onClose}
+                >
+                  x
+                </Button>
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
               {children}

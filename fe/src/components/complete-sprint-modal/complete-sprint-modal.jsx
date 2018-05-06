@@ -77,6 +77,7 @@ export class CompleteSprintModal extends Component {
       <ModalWindow
         isVisible={isVisible}
         title="Complete sprint"
+        onClose={onClose}
       >
         <section className="complete-sprint">
           <h3 className="complete-sprint__name">{sprint.name}</h3>

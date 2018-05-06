@@ -1,10 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import {
   ISSUE_STATUSES,
   ISSUE_TYPE_ICONS,
+  STORY_ROUTE,
 } from '../../../../constants';
 
 import './story-list-item.sass';
@@ -26,7 +28,12 @@ export const StoryListItem = ({
         <span className="story-list__item__info__type">
           <i className={`fa ${ISSUE_TYPE_ICONS.UserStory}`}></i>
         </span>
-        <span className="story-list__item__info__key">{storykey}</span>
+        <Link
+          className="story-list__item__info__key"
+          to={`${STORY_ROUTE}/${storykey}`}
+        >
+          {storykey}
+        </Link>
         <span className="story-list__item__info__name">{name}</span>
       </section>
     </section>

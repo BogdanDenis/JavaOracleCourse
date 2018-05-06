@@ -60,21 +60,6 @@ export class Project extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.project !== nextProps.project && !this.state.projectIsLoaded) {
-      const {
-        getProjectBacklog,
-        getProjectActiveSprint,
-        getProjectsDevelopers,
-      } = this.props;
-
-      const { key } = nextProps.project;
-
-      getProjectBacklog(key);
-      getProjectActiveSprint(key);
-      getProjectsDevelopers(key);
-      this.setState({ projectIsLoaded: true });
-    }
-
     if (this.props.backlog !== nextProps.backlog && nextProps.backlog.id && !this.state.backlogIsLoaded) {
       const { getSprintsStories } = this.props;
       const { id } = nextProps.backlog;

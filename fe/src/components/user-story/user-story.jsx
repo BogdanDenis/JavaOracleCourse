@@ -10,9 +10,13 @@ import { Link } from 'react-router-dom';
 
 import {
   InputWithSave,
+  SelectWithSave,
   IssueList,
 } from '../../components';
-import { STORY_ROUTE } from '../../constants';
+import {
+  STORY_ROUTE,
+  ISSUE_STATUSES,
+} from '../../constants';
 
 export class UserStory extends Component {
   static get propTypes() {
@@ -21,6 +25,7 @@ export class UserStory extends Component {
       getStoriesIssues: PropTypes.func.isRequired,
       changeStoryName: PropTypes.func.isRequired,
       changeStoryDescription: PropTypes.func.isRequired,
+      changeStoryStatus: PropTypes.func.isRequired,
       userStory: PropTypes.object,
       developers: PropTypes.array,
       storyKey: PropTypes.string.isRequired,
@@ -39,10 +44,12 @@ export class UserStory extends Component {
 
     this.state = {
       userStory: props.userStory,
+      storyStatus: [],
     };
 
     this.saveUserStoryName = this.saveUserStoryName.bind(this);
     this.saveUserStoryDescription = this.saveUserStoryDescription.bind(this);
+    this.saveUserStoryStatus = this.saveUserStoryStatus.bind(this);
   }
 
   checkStoryUpdate(props = this.props) {
@@ -59,6 +66,15 @@ export class UserStory extends Component {
     }
 
     this.setState({ userStory });
+    const statuses = Object.values(ISSUE_STATUSES).map(status => {
+      return {
+        value: status,
+        text: status,
+        selected: status === userStory.status,
+      };
+    });
+
+    this.setState({ storyStatus: statuses });
   }
 
   componentDidMount() {
@@ -89,9 +105,24 @@ export class UserStory extends Component {
     this.props.changeStoryDescription(userStoryDTO);
   }
 
+  saveUserStoryStatus() {
+    const {
+      userStory,
+      storyStatus,
+    } = this.state;
+
+    const userStoryDTO = {
+      key: userStory.key,
+      status: storyStatus.find(status => status.selected === true).value,
+    };
+
+    this.props.changeStoryStatus(userStoryDTO);
+  }
+
   render() {
     const {
       userStory,
+      storyStatus,
     } = this.state;
 
     return (
@@ -120,6 +151,15 @@ export class UserStory extends Component {
             onInputChange={(userStory) => this.setState({ userStory })}
             onChangeSave={this.saveUserStoryDescription}
             onChangeCancel={(userStory) => this.setState({ userStory })}
+          />
+          <SelectWithSave
+            name="status"
+            label="Status"
+            placeholder="User story status"
+            options={storyStatus}
+            onInputChange={(storyStatus) => {this.setState({ storyStatus })}}
+            onChangeSave={this.saveUserStoryStatus}
+            onChangeCancel={(storyStatus) => {this.setState({ storyStatus })}}
           />
         </section>
         <section className="user-story__issues">

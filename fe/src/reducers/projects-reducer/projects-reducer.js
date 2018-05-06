@@ -20,9 +20,8 @@ export const projectsReducer = (state = initialState, action) => {
       return {
         ...state,
         viewed: {
+          ...state.viewed,
           ...action.payload,
-          sprint: {},
-          backlog: {},
         },
       };
     case types.SAVE_PROJECT_BACKLOG:
@@ -64,6 +63,14 @@ export const projectsReducer = (state = initialState, action) => {
         viewed: {
           ...state.viewed,
           developers: action.payload,
+        },
+      };
+    case types.SAVE_PROJECTS_SPRINTS:
+      return {
+        ...state,
+        viewed: {
+          ...state.viewed,
+          sprints: action.payload,
         },
       };
     default:

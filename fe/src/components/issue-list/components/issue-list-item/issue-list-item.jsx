@@ -1,10 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import {
   ISSUE_STATUSES,
   ISSUE_TYPE_ICONS,
+  ISSUE_ROUTE,
 } from '../../../../constants';
 
 import './issue-list-item.sass';
@@ -26,7 +28,12 @@ export const IssueListItem = ({
         <span className={`issue-list__item__info__type ${typeclass}`}>
           <i className={`fa ${ISSUE_TYPE_ICONS[issue.type]}`}></i>
         </span>
-        <span className="issue-list__item__info__key">{issue.key}</span>
+        <Link
+          className="issue-list__item__info__key"
+          to={`${ISSUE_ROUTE}/${issue.key}`}
+        >
+          {issue.key}
+        </Link>
         <span className="issue-list__item__info__name">{issue.name}</span>
         <span className="issue-list__item__info__assignee">
           {assigneeName.substring(0, 1)}
