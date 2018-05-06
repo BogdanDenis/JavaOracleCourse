@@ -25,6 +25,10 @@ BEGIN
     v_storykey := v_projectkey || '-' || v_storyissuecount;
     SELECT v_storykey INTO :new.key FROM dual;
     SELECT StoryIds.nextval INTO :new.id FROM dual;
+    SELECT (SELECT statusName
+            FROM Status
+            WHERE statusName = 'OPEN') INTO :new.status
+    FROM dual;
     
     UPDATE Project
     SET storyIssueCount = v_storyissuecount

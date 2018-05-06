@@ -66,7 +66,7 @@ public class SprintDAO {
 	}
 	
 	public List<UserStoryRespDTO> getSprintsStories(long id) {
-		String SQL = "SELECT key, name, description, sprintId\n" +
+		String SQL = "SELECT key, name, description, status, sprintId\n" +
 					 "FROM UserStory\n" +
 					 "WHERE sprintId = :id";
 		Map params = new HashMap();

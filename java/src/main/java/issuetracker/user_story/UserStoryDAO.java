@@ -18,7 +18,7 @@ public class UserStoryDAO {
 	public List<UserStoryRespDTO> findAll() {
 		try {
 			List<UserStoryRespDTO> res = template.query(
-				"SELECT key, name, description, sprintId\n" +
+				"SELECT key, name, description, status, sprintId\n" +
 				"FROM UserStory",
 				new UserStoryRowMapper()
 			);
@@ -29,7 +29,7 @@ public class UserStoryDAO {
 	}
 	
 	public UserStoryRespDTO findByKey(String key) {
-		String SQL = "SELECT key, name, description, sprintId\n" +
+		String SQL = "SELECT key, name, description, status, sprintId\n" +
 					 "FROM UserStory\n" +
 					 "WHERE key = :key";
 		Map params = new HashMap();
@@ -52,7 +52,7 @@ public class UserStoryDAO {
 		try {
 			template.update(SQL, params);
 			UserStoryRespDTO res = template.queryForObject(
-				"SELECT key, name, description, sprintId\n" +
+				"SELECT key, name, description, status, sprintId\n" +
 				"FROM UserStory\n" +
 				"WHERE id = (SELECT MAX(id) FROM UserStory)",
 				new HashMap<>(),
@@ -127,6 +127,24 @@ public class UserStoryDAO {
 			return res;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	
+	public UserStoryRespDTO changeStatus(UserStoryStatusDTO userStoryStatusDTO) {
+		String SQL = "UPDATE UserStory\n" +
+					 "SET status = (SELECT statusName\n" +
+								   "FROM Status\n" +
+								   "WHERE statusName = :status)\n" +
+					 "WHERE key = :key";
+		Map params = new HashMap();
+		params.put("key", userStoryStatusDTO.getKey());
+		params.put("status", userStoryStatusDTO.getStatus());
+		try {
+			template.update(SQL, params);
+			UserStoryRespDTO res = this.findByKey(userStoryStatusDTO.getKey());
+			return res;
+		} catch (Exception e) {
 			return null;
 		}
 	}

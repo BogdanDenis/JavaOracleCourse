@@ -12,6 +12,7 @@ public class UserStoryRowMapper implements RowMapper<UserStoryRespDTO> {
 		story.setKey(rs.getString("key"));
 		story.setName(rs.getString("name"));
 		story.setDescription(rs.getString("description"));
+		story.setStatus(rs.getString("status"));
 		story.setSprintId(rs.getLong("sprintId"));
 		return story;
 	}

@@ -81,4 +81,14 @@ public class UserStoryController {
 		}
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@RequestMapping(value = "/changeStatus", method = RequestMethod.PATCH,
+			consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> changeStatus(@RequestBody UserStoryStatusDTO userStoryStatusDTO) {
+		UserStoryRespDTO res = userStoryDAO.changeStatus(userStoryStatusDTO);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

@@ -4,14 +4,16 @@ public class UserStoryRespDTO {
 	private String key;
 	private String name;
 	private String description;
+	private String status;
 	private long sprintId;
 	
 	public UserStoryRespDTO() {}
 	
-	public UserStoryRespDTO(String key, String name, String description, long sprintId) {
+	public UserStoryRespDTO(String key, String name, String description, String status, long sprintId) {
 		this.key = key;
 		this.name = name;
 		this.description = description;
+		this.status = status;
 		this.sprintId = sprintId;
 	}
 	
@@ -37,6 +39,14 @@ public class UserStoryRespDTO {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	public long getSprintId() {
