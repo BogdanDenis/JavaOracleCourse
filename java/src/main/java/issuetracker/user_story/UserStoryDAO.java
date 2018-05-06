@@ -82,8 +82,8 @@ public class UserStoryDAO {
 	
 	public UserStoryRespDTO changeDescription(UserStoryDescriptionDTO userStoryDescriptionDTO) {
 		String SQL = "UPDATE UserStory\n" +
-				"SET description = :description\n" +
-				"WHERE key = :key";
+					 "SET description = :description\n" +
+					 "WHERE key = :key";
 		Map params = new HashMap();
 		params.put("key", userStoryDescriptionDTO.getKey());
 		params.put("description", userStoryDescriptionDTO.getDescription());
@@ -106,6 +106,27 @@ public class UserStoryDAO {
 			List<IssueRespDTO> res = template.query(SQL, params, new IssueRowMapper());
 			return res;
 		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public UserStoryRespDTO moveToSprint(UserStorySprintDTO userStorySprintDTO) {
+		String SQL = "UPDATE UserStory\n" +
+					 "SET sprintId = :sprintId\n" +
+					 "WHERE key = :key AND :sprintId IN (SELECT id\n" +
+														"FROM Sprint\n" +
+														"WHERE projectKey = (SELECT projectKey\n" +
+																		   "FROM Sprint\n" +
+																		   "WHERE id = sprintId))";
+		Map params = new HashMap();
+		params.put("key", userStorySprintDTO.getKey());
+		params.put("sprintId", userStorySprintDTO.getSprintId());
+		try {
+			template.update(SQL, params);
+			UserStoryRespDTO res = this.findByKey(userStorySprintDTO.getKey());
+			return res;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return null;
 		}
 	}

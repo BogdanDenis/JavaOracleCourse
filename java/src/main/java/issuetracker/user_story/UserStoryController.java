@@ -71,4 +71,14 @@ public class UserStoryController {
 		}
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@RequestMapping(value = "/changeSprint", method = RequestMethod.PATCH,
+			consumes = "application/json", produces = "application/json")
+	public ResponseEntity<?> changeSprint(@RequestBody UserStorySprintDTO userStorySprintDTO) {
+		UserStoryRespDTO res = userStoryDAO.moveToSprint(userStorySprintDTO);
+		if (res != null) {
+			return new ResponseEntity<>(res, HttpStatus.OK);
+		}
+		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
