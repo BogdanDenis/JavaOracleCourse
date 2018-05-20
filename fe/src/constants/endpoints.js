@@ -4,6 +4,7 @@ export const GET_DEVELOPERS_WORKLOAD = developerId => `http://localhost:4000/v1/
 export const GET_PROJECT_BACKLOG = projectKey => `http://localhost:4000/v1/project/${projectKey}/backlog`;
 export const GET_PROJECT_ACTIVE_SPRINT = projectKey => `http://localhost:4000/v1/project/${projectKey}/activeSprint`;
 export const GET_SPRINTS_STORIES = sprintId => `http://localhost:4000/v1/sprint/${sprintId}/stories`;
+export const GET_SPRINT = sprintId => `http://localhost:4000/v1/sprint/${sprintId}`;
 export const CREATE_SPRINT = 'http://localhost:4000/v1/sprint';
 export const GET_USER_STORY = storyKey => `http://localhost:4000/v1/userstory/${storyKey}`;
 export const GET_STORIES_ISSUES = storyKey => `http://localhost:4000/v1/userstory/${storyKey}/issues`;
@@ -13,3 +14,4 @@ export const GET_PROJECTS_DEVELOPERS = projectKey => `http://localhost:4000/v1/w
 export const COMPLETE_SPRINT = sprintId => `http://localhost:4000/v1/sprint/${sprintId}/completeSprint`;
 export const CHANGE_STORY_STATUS = 'http://localhost:4000/v1/userstory/changeStatus';
 export const GET_PROJECTS_SPRINTS = projectKey => `http://localhost:4000/v1/project/${projectKey}/sprints`;
+export const GET_DEVELOPER = developerId => `http://localhost:4000/v1/developer/${developerId}`;

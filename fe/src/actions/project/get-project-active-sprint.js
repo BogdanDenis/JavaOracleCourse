@@ -1,6 +1,9 @@
 import { RSAA } from 'redux-api-middleware';
 
-import { saveProjectActiveSprint } from './save-project-active-sprint';
+import {
+  saveProjectActiveSprint,
+  getSprintsStories,
+} from '../';
 import * as types from './types';
 import * as endpoints from '../../constants';
 
@@ -17,6 +20,7 @@ export const getProjectActiveSprint = projectKey => (dispatch) => {
             res.json()
               .then(sprint => {
                 dispatch(saveProjectActiveSprint(sprint));
+                dispatch(getSprintsStories(sprint.id));
               });
           },
         },

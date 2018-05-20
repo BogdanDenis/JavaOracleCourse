@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { Project } from './project';
 import {
   getViewedProject,
-  getProjectBacklog,
-  getProjectActiveSprint,
-  getSprintsStories,
-  getProjectsDevelopers,
 } from '../../actions';
 import {
   selectViewedProject,
@@ -22,10 +18,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getViewedProject,
-  getProjectBacklog,
-  getProjectActiveSprint,
-  getSprintsStories,
-  getProjectsDevelopers,
 };
 
 export const ProjectContainer = connect(

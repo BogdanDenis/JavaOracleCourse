@@ -22,6 +22,7 @@ export class UserStory extends Component {
   static get propTypes() {
     return {
       getViewedStory: PropTypes.func.isRequired,
+      getSprint: PropTypes.func.isRequired,
       getStoriesIssues: PropTypes.func.isRequired,
       changeStoryName: PropTypes.func.isRequired,
       changeStoryDescription: PropTypes.func.isRequired,
@@ -58,14 +59,43 @@ export class UserStory extends Component {
       userStory,
       getViewedStory,
       getStoriesIssues,
+      getSprint,
     } = props;
 
     if (storyKey && userStory.key !== storyKey) {
       getViewedStory(storyKey);
       getStoriesIssues(storyKey);
+    } else {
+      this.setState({ userStory });
+      this.saveStoryStatusList(userStory);
+      this.saveStoryWithDevs(userStory, props.developers);
+    }
+  }
+
+  componentDidMount() {
+    this.checkStoryUpdate();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {
+      userStory,
+      getSprint,
+      developers,
+    } = this.props;
+
+    if (userStory.key !== nextProps.userStory.key) {
+      getSprint(nextProps.userStory.sprintId);
     }
 
-    this.setState({ userStory });
+    this.setState({ userStory: nextProps.userStory });
+    this.saveStoryStatusList(nextProps.userStory);
+
+    if (developers !== nextProps.developers && userStory.issues) {
+      this.saveStoryWithDevs(userStory, nextProps.developers);
+    }
+  }
+
+  saveStoryStatusList(userStory) {
     const statuses = Object.values(ISSUE_STATUSES).map(status => {
       return {
         value: status,
@@ -77,12 +107,22 @@ export class UserStory extends Component {
     this.setState({ storyStatus: statuses });
   }
 
-  componentDidMount() {
-    this.checkStoryUpdate();
-  }
+  saveStoryWithDevs(userStory, developers) {
+    const userStoryWithDevelopers = {
+      ...userStory,
+      issues: userStory.issues.map(issue => {
+        const assignee = developers.find(developer => developer.id === issue.assigneeId);
+        const reporter = developers.find(developer => developer.id === issue.reporterId);
 
-  componentWillReceiveProps(nextProps) {
-    this.checkStoryUpdate(nextProps);
+        return {
+          ...issue,
+          assigneeName: assignee ? assignee.name : '',
+          reporterName: reporter ? reporter.name : '',
+        }
+      }),
+    };
+
+    this.setState({ userStory: userStoryWithDevelopers });
   }
 
   saveUserStoryName() {

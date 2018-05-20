@@ -16,10 +16,6 @@ export class Project extends Component {
   static get propTypes() {
     return {
       getViewedProject: PropTypes.func.isRequired,
-      getProjectActiveSprint: PropTypes.func.isRequired,
-      getProjectBacklog: PropTypes.func.isRequired,
-      getSprintsStories: PropTypes.func.isRequired,
-      getProjectsDevelopers: PropTypes.func.isRequired,
       project: PropTypes.object,
       sprint: PropTypes.object,
       backlog: PropTypes.object,
@@ -57,24 +53,6 @@ export class Project extends Component {
     const { projectKey } = this.props.match.params;
 
     getViewedProject(projectKey);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.backlog !== nextProps.backlog && nextProps.backlog.id && !this.state.backlogIsLoaded) {
-      const { getSprintsStories } = this.props;
-      const { id } = nextProps.backlog;
-
-      getSprintsStories(id);
-      this.setState({ backlogIsLoaded: true });
-    }
-
-    if (this.props.sprint !== nextProps.sprint && nextProps.sprint.id && !this.state.sprintIsLoaded) {
-      const { getSprintsStories } = this.props;
-      const { id } = nextProps.sprint;
-
-      getSprintsStories(id);
-      this.setState({ sprintIsLoaded: true });
-    }
   }
 
   toggleCreateSprintModal() {

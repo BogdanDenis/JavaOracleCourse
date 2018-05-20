@@ -1,5 +1,6 @@
 import { RSAA } from 'redux-api-middleware';
 
+import { getDeveloper } from '../';
 import { saveProjectsDevelopers } from './save-projects-developers';
 import * as types from './types';
 import * as endpoints from '../../constants';
@@ -16,6 +17,9 @@ export const getProjectsDevelopers = projectKey => (dispatch) => {
           payload: (_, __, res) => {
             res.json()
               .then(developers => {
+                developers.map(developer => {
+                  dispatch(getDeveloper(developer.id));
+                });
                 dispatch(saveProjectsDevelopers(developers));
               });
           },

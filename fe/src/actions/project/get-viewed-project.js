@@ -1,6 +1,11 @@
 import { RSAA } from 'redux-api-middleware';
 
-import { saveViewedProject } from './save-viewed-project';
+import {
+  saveViewedProject,
+  getProjectBacklog,
+  getProjectActiveSprint,
+  getProjectsDevelopers,
+} from './';
 import * as endpoints from '../../constants';
 import * as types from './types';
 
@@ -17,6 +22,9 @@ export const getViewedProject = projectKey => (dispatch) => {
             res.json()
               .then(project => {
                 dispatch(saveViewedProject(project));
+                dispatch(getProjectBacklog(project.key));
+                dispatch(getProjectActiveSprint(project.key));
+                dispatch(getProjectsDevelopers(project.key));
               });
           },
         },

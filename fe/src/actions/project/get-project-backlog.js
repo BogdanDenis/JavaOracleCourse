@@ -1,6 +1,9 @@
 import { RSAA } from 'redux-api-middleware';
 
-import { saveProjectBacklog } from './save-project-backlog';
+import {
+  saveProjectBacklog,
+  getSprintsStories,
+} from '../';
 import * as types from './types';
 import * as endpoints from '../../constants';
 
@@ -17,6 +20,7 @@ export const getProjectBacklog = projectKey => (dispatch) => {
             res.json()
               .then(backlog => {
                 dispatch(saveProjectBacklog(backlog));
+                dispatch(getSprintsStories(backlog.id));
               });
           },
         },

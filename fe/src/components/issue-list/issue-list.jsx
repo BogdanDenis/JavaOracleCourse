@@ -30,7 +30,7 @@ export class IssueList extends Component {
           return (
             <IssueListItem
               issue={issue}
-              assigneeName={issue.assigneeId.toString()}
+              assigneeName={issue.assigneeName || ''}
               onItemClick={() => onIssueClick(issue.key)}
             />
           );

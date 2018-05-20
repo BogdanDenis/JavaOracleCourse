@@ -5,6 +5,7 @@ import {
   projectsReducer,
   userReducer,
   userStoryReducer,
+  developerResucer,
 } from '../';
 
 export const RootReducer = combineReducers({
@@ -12,4 +13,5 @@ export const RootReducer = combineReducers({
   projects: projectsReducer,
   user: userReducer,
   userStories: userStoryReducer,
+  developers: developerResucer,
 });

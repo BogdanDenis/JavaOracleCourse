@@ -35,7 +35,10 @@ export const IssueListItem = ({
           {issue.key}
         </Link>
         <span className="issue-list__item__info__name">{issue.name}</span>
-        <span className="issue-list__item__info__assignee">
+        <span
+          className="issue-list__item__info__assignee"
+          title={`Assignee: ${issue.assigneeName}`}
+        >
           {assigneeName.substring(0, 1)}
         </span>            
       </section>
