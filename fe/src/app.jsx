@@ -61,6 +61,7 @@ class App extends Component {
         <Route path={routes.MY_PROJECTS_ROUTE} component={pages.MyProjectsContainer} />
         <Route path={`${routes.PROJECT_ROUTE}/:projectKey`} component={pages.ProjectContainer} />
         <Route path={`${routes.STORY_ROUTE}/:storyKey`} component={pages.UserStory} />
+        <Route path={`${routes.ISSUE_ROUTE}/:issueKey`} component={pages.IssueContainer} />
       </div>
     );
   }

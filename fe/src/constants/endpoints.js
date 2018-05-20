@@ -15,3 +15,9 @@ export const COMPLETE_SPRINT = sprintId => `http://localhost:4000/v1/sprint/${sp
 export const CHANGE_STORY_STATUS = 'http://localhost:4000/v1/userstory/changeStatus';
 export const GET_PROJECTS_SPRINTS = projectKey => `http://localhost:4000/v1/project/${projectKey}/sprints`;
 export const GET_DEVELOPER = developerId => `http://localhost:4000/v1/developer/${developerId}`;
+export const GET_ISSUE = issueKey => `http://localhost:4000/v1/issue/${issueKey}`;
+export const CHANGE_ISSUE_TYPE = `http://localhost:4000/v1/issue/changeType`;
+export const CHANGE_ISSUE_STATUS = `http://localhost:4000/v1/issue/changeStatus`;
+export const CHANGE_ISSUE_NAME = `http://localhost:4000/v1/issue/changeName`;
+export const CHANGE_ISSUE_DESCRIPTION = `http://localhost:4000/v1/issue/changeDescription`;
+export const CHANGE_ISSUE_ASSIGNEE = `http://localhost:4000/v1/issue/changeAssignee`;
