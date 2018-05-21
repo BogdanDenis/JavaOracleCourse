@@ -41,7 +41,8 @@ public class IssueController {
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(value = "/changeType", method = RequestMethod.PATCH, consumes = "application/json")
+	@RequestMapping(value = "/changeType", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeType(@RequestBody IssueTypeDTO issueTypeDTO) {
 		boolean success = issueDAO.changeType(issueTypeDTO);
 		if (success) {
@@ -50,7 +51,8 @@ public class IssueController {
 		return new ResponseEntity<>(issueDAO.findByKey(issueTypeDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(value = "/changeName", method = RequestMethod.PATCH, consumes = "application/json")
+	@RequestMapping(value = "/changeName", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeName(@RequestBody IssueNameDTO issueNameDTO) {
 		boolean success = issueDAO.changeName(issueNameDTO);
 		if (success) {
@@ -59,7 +61,8 @@ public class IssueController {
 		return new ResponseEntity<>(issueDAO.findByKey(issueNameDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(value = "/changeDescription", method = RequestMethod.PATCH, consumes = "application/json")
+	@RequestMapping(value = "/changeDescription", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeDescription(@RequestBody IssueDescriptionDTO issueDescriptionDTO) {
 		boolean success = issueDAO.changeDescription(issueDescriptionDTO);
 		if (success) {
@@ -68,19 +71,33 @@ public class IssueController {
 		return new ResponseEntity<>(issueDAO.findByKey(issueDescriptionDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@RequestMapping(value = "/changeAssignee", method = RequestMethod.PATCH, consumes = "application/json")
+	@RequestMapping(value = "/changeAssignee", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeAssignee(@RequestBody IssueAssigneeDTO issueAssigneeDTO) {
 		boolean success = issueDAO.changeAssignee(issueAssigneeDTO);
 		if (success) {
 			return new ResponseEntity<>(issueDAO.findByKey(issueAssigneeDTO.getKey()), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(issueDAO.findByKey(issueAssigneeDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);	}
+		return new ResponseEntity<>(issueDAO.findByKey(issueAssigneeDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
-	@RequestMapping(value = "/changeStatus", method = RequestMethod.PATCH, consumes = "application/json")
+	@RequestMapping(value = "/changeStatus", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> changeStatus(@RequestBody IssueStatusDTO issueStatusDTO) {
 		boolean success = issueDAO.changeStatus(issueStatusDTO);
 		if (success) {
 			return new ResponseEntity<>(issueDAO.findByKey(issueStatusDTO.getKey()), HttpStatus.OK);
 		}
-		return new ResponseEntity<>(issueDAO.findByKey(issueStatusDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);	}
+		return new ResponseEntity<>(issueDAO.findByKey(issueStatusDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+    @RequestMapping(value = "/logTime", method = RequestMethod.PATCH,
+            consumes = "application/json", produces = "application/json")
+    public ResponseEntity<?> logTime(@RequestBody IssueLogDTO issueLogDTO) {
+	    boolean success = issueDAO.logTime(issueLogDTO);
+	    if (success) {
+	        return new ResponseEntity<>(issueDAO.findByKey(issueLogDTO.getKey()), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(issueDAO.findByKey(issueLogDTO.getKey()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

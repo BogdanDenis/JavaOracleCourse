@@ -145,4 +145,19 @@ public class IssueDAO {
 			return false;
 		}
 	}
+
+	public boolean logTime(IssueLogDTO issueLogDTO) {
+	    String SQL = "UPDATE Issue\n" +
+                     "SET estimationUsed = estimationUsed + :time\n" +
+                     "WHERE key = :key";
+	    Map params = new HashMap();
+	    params.put("key", issueLogDTO.getKey());
+	    params.put("time", issueLogDTO.getTime());
+	    try {
+	        template.update(SQL, params);
+	        return true;
+        } catch (Exception e) {
+	        return false;
+        }
+    }
 }
