@@ -9,3 +9,4 @@ export * from './input-with-save/input-with-save';
 export * from './user-story/user-story-container';
 export * from './complete-sprint-modal/complete-sprint-modal-container';
 export * from './select-with-save/select-with-save';
+export * from './log-work-modal/log-work-modal-container';

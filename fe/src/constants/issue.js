@@ -22,4 +22,5 @@ export const ISSUE_FIELDS = {
   NAME: 'Name',
   DESCRIPTION: 'Description',
   ASSIGNEE: 'Assignee',
+  ESTIMATION_USED: 'EstimationUsed',
 };

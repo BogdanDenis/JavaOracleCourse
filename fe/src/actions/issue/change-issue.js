@@ -17,6 +17,8 @@ const getChangeEndpoint = (field) => {
 			return endpoints.CHANGE_ISSUE_DESCRIPTION;
 		case ISSUE_FIELDS.ASSIGNEE:
 			return endpoints.CHANGE_ISSUE_ASSIGNEE;
+		case ISSUE_FIELDS.ESTIMATION_USED:
+			return endpoints.CHANGE_ISSUE_ESTIMATION_USED;
 		default:
 			return '';
 	}

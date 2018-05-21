@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import {
   Button,
-  FormGroup,
-  FormControl,
-  ControlLabel,
 } from 'react-bootstrap';
 
 import {
 	InputWithSave,
 	SelectWithSave,
 	CommonHeader,
+	LogWorkModalContainer,
 } from '../../components';
 import {
 	ISSUE_TYPES,
@@ -53,6 +51,7 @@ export class Issue extends Component {
 		this.saveIssueName = this.saveIssueName.bind(this);
 		this.saveIssueDescription = this.saveIssueDescription.bind(this);
 		this.saveIssueAssignee = this.saveIssueAssignee.bind(this);
+		this.toggleLogWorkModal = this.toggleLogWorkModal.bind(this);
 	}
 
 	componentDidMount() {
@@ -206,6 +205,10 @@ export class Issue extends Component {
 		changeIssue(issueAssigneeDTO, ISSUE_FIELDS.ASSIGNEE);
 	}
 
+	toggleLogWorkModal() {
+		this.setState({ logWorkModalVisible: !this.state.logWorkModalVisible });
+	}
+
 	render() {
 		const { match } = this.props;
 		const { issueKey } = match.params;
@@ -214,6 +217,7 @@ export class Issue extends Component {
 			issueTypes,
 			issueStatuses,
 			issueAssignee,
+			logWorkModalVisible,
 		} = this.state;
 
 		return (
@@ -267,7 +271,24 @@ export class Issue extends Component {
 							onChangeSave={this.saveIssueAssignee}
 							onChangeCancel={(issueAssignee) => {this.setState({ issueAssignee })}}
 					/>
+					<section className="issue__estimation">
+						<p className="issue__estimation__value">
+							{`Estimation original: ${issue.estimationOriginal} m`}
+						</p>
+						<p className="issue__estimation__value">
+							{`Estimation used: ${issue.estimationUsed} m`}
+							<Button
+								className="issue__estimation__value__log-work"
+								onClick={this.toggleLogWorkModal}
+							>Log work</Button>
+						</p>						
+					</section>
 				</section>
+				<LogWorkModalContainer
+					isVisible={logWorkModalVisible}
+					onCancel={this.toggleLogWorkModal}
+					issueKey={issue.key}
+				/>
 			</section>
 		)
 	}
