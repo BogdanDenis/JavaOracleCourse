@@ -43,14 +43,11 @@ public class IssueDAO {
 	}
 	
 	public boolean create(IssueDTO issue) {
-		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, status, estimationOriginal, estimationUsed, storyKey)\n" +
+		String SQL = "INSERT INTO Issue(type, name, description, creationDate, assigneeId, reporterId, estimationOriginal, estimationUsed, storyKey)\n" +
 					"VALUES((SELECT typeName\n" +
 						"FROM Type\n" +
 						"WHERE typeName = :type)," +
 						"CAST(:name AS VARCHAR2(255)), CAST(:description AS VARCHAR2(255)), :creationDate, :assigneeId, :reporterId," +
-						"(SELECT statusName\n" +
-						"FROM Status\n" +
-						"WHERE statusName = :status)," +
 						":estimationOriginal, :estimationUsed, :storyKey)";
 		Map params = new HashMap();
 		params.put("type", issue.getType());
@@ -59,7 +56,6 @@ public class IssueDAO {
 		params.put("creationDate", issue.getCreationDate());
 		params.put("assigneeId", issue.getAssigneeId());
 		params.put("reporterId", issue.getReporterId());
-		params.put("status", issue.getStatus());
 		params.put("estimationOriginal", issue.getEstimationOriginal());
 		params.put("estimationUsed", issue.getEstimationUsed());
 		params.put("storyKey", issue.getStoryKey());

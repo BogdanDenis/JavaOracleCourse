@@ -9,7 +9,6 @@ public class IssueDTO {
 	private long creationDate;
 	private long assigneeId;
 	private long reporterId;
-	private String status;
 	private int estimationOriginal;
 	private int estimationUsed;
 	private String storyKey;
@@ -22,7 +21,6 @@ public class IssueDTO {
 			String description,
 			long assigneeId,
 			long reporterId,
-			String status,
 			int estimationOriginal,
 			int estimationUsed,
 			String storyKey) {
@@ -32,7 +30,6 @@ public class IssueDTO {
 		this.creationDate = new Date().getTime();
 		this.assigneeId = assigneeId;
 		this.reporterId = reporterId;
-		this.status = status;
 		this.estimationOriginal = estimationOriginal;
 		this.estimationUsed = estimationUsed;
 		this.storyKey = storyKey;
@@ -84,14 +81,6 @@ public class IssueDTO {
 	
 	public void setReporterId(long reporterId) {
 		this.reporterId = reporterId;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	
 	public int getEstimationOriginal() {
