@@ -3,5 +3,6 @@ export const selectProjectBacklog = (state) => {
   if (!viewed) {
     return;
   }
+
   return viewed.backlog;
 };

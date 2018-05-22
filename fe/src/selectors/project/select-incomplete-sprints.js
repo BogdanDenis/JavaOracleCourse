@@ -3,6 +3,5 @@ export const selectIncompleteSprints = (state) => {
 	if (!viewed) {
 		return [];
 	}
-
 	return viewed.incompleteSprints;
 };

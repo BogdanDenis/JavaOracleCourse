@@ -27,8 +27,10 @@ export class UserStory extends Component {
       changeStoryName: PropTypes.func.isRequired,
       changeStoryDescription: PropTypes.func.isRequired,
       changeStoryStatus: PropTypes.func.isRequired,
+      changeStorySprint: PropTypes.func.isRequired,
       userStory: PropTypes.object,
       developers: PropTypes.array,
+      sprints: PropTypes.array,
       storyKey: PropTypes.string.isRequired,
     };
   }
@@ -37,6 +39,7 @@ export class UserStory extends Component {
     return {
       userStory: {},
       developers: [],
+      sprints: [],
     };
   }
 
@@ -46,17 +49,20 @@ export class UserStory extends Component {
     this.state = {
       userStory: props.userStory,
       storyStatus: [],
+      storySprint: [],
     };
 
     this.saveUserStoryName = this.saveUserStoryName.bind(this);
     this.saveUserStoryDescription = this.saveUserStoryDescription.bind(this);
     this.saveUserStoryStatus = this.saveUserStoryStatus.bind(this);
+    this.saveUserStorySprint = this.saveUserStorySprint.bind(this);
   }
 
   checkStoryUpdate(props = this.props) {
     const {
       storyKey,
       userStory,
+      developers,
       getViewedStory,
       getStoriesIssues,
       getSprint,
@@ -68,7 +74,7 @@ export class UserStory extends Component {
     } else {
       this.setState({ userStory });
       this.saveStoryStatusList(userStory);
-      this.saveStoryWithDevs(userStory, props.developers);
+      this.saveStoryWithDevs(userStory, developers);
     }
   }
 
@@ -89,6 +95,7 @@ export class UserStory extends Component {
 
     this.setState({ userStory: nextProps.userStory });
     this.saveStoryStatusList(nextProps.userStory);
+    this.saveStorySprintList(userStory, nextProps.sprints);        
 
     if (developers !== nextProps.developers && userStory.issues) {
       this.saveStoryWithDevs(userStory, nextProps.developers);
@@ -105,6 +112,18 @@ export class UserStory extends Component {
     });
 
     this.setState({ storyStatus: statuses });
+  }
+
+  saveStorySprintList(userStory, sprints) {
+    const sprintList = sprints.map(sprint => {
+      return {
+        value: sprint.id,
+        text: sprint.name,
+        selected: sprint.id === userStory.sprintId,
+      };
+    });
+
+    this.setState({ storySprint: sprintList });
   }
 
   saveStoryWithDevs(userStory, developers) {
@@ -159,10 +178,25 @@ export class UserStory extends Component {
     this.props.changeStoryStatus(userStoryDTO);
   }
 
+  saveUserStorySprint() {
+    const {
+      userStory,
+      storySprint,
+    } = this.state;
+
+    const userStoryDTO = {
+      key: userStory.key,
+      sprintId: storySprint.find(sprint => sprint.selected === true).value,
+    };
+
+    this.props.changeStorySprint(userStoryDTO);
+  }
+
   render() {
     const {
       userStory,
       storyStatus,
+      storySprint,
     } = this.state;
 
     return (
@@ -171,6 +205,15 @@ export class UserStory extends Component {
           <Link to={`${STORY_ROUTE}/${userStory.key}`}>{userStory.key}</Link>
         </h4>
         <section className="user-story__form">
+          <SelectWithSave
+            name="sprint"
+            label="Sprint"
+            placeholder="User story sprint"
+            options={storySprint}
+            onInputChange={(storySprint) => {this.setState({ storySprint })}}
+            onChangeSave={this.saveUserStorySprint}
+            onChangeCancel={(storySprint) => {this.setState({ storySprint })}}
+          />
           <InputWithSave
             scope={userStory}
             type="text"

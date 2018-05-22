@@ -9,15 +9,24 @@ import {
   changeStoryName,
   changeStoryDescription,
   changeStoryStatus,
+  changeStorySprint,
 } from '../../actions';
 import {
   selectViewedStory,
   selectDevelopers,
+  selectIncompleteSprints,
+  selectProjectActiveSprint,
+  selectProjectBacklog,
 } from '../../selectors';
 
 const mapStateToProps = state => ({
   userStory: selectViewedStory(state),
   developers: selectDevelopers(state),
+  sprints: [
+    ...selectIncompleteSprints(state),
+    selectProjectBacklog(state),    
+    selectProjectActiveSprint(state),
+  ],
 });
 
 const mapDispatchToProps = {
@@ -27,6 +36,7 @@ const mapDispatchToProps = {
   changeStoryName,
   changeStoryDescription,
   changeStoryStatus,
+  changeStorySprint,
 };
 
 export const UserStoryContainer = connect(
