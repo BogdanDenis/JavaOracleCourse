@@ -68,4 +68,13 @@ public class ProjectController {
 		}
 		return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
+	@RequestMapping(value = "/{key}/incompleteSprints", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<?> getProjectsIncompleteSprints(@PathVariable("key") String key) {
+	    List<SprintRespDTO> res = projectDAO.findIncompleteSprints(key);
+	    if (res != null) {
+	        return new ResponseEntity<>(res, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
