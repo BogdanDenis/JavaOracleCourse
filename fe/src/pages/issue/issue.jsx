@@ -91,8 +91,9 @@ export class Issue extends Component {
 			getViewedIssue(issueKey);
 		} else {
 			this.setState({ issue });
-			this.saveIssueTypeList(nextProps.issue);
-			this.saveIssueStatusList(nextProps.issue);
+			this.saveIssueTypeList(props.issue);
+			this.saveIssueStatusList(props.issue);
+			this.saveDevelopersList(props.issue, props.developers);
 		}
 	}
 

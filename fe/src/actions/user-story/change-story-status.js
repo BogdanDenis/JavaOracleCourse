@@ -20,7 +20,7 @@ export const changeStoryStatus = storyStatusDTO => (dispatch) => {
           payload: (_, __, res) => {
             res.json()
               .then(story => {
-                dispatch(saveViewedStory(story));
+                
               });
           },
         },
