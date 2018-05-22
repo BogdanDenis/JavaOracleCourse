@@ -8,13 +8,29 @@ import {
 
 import {
   Header,
+  CreateModalContainer,
 } from '../../components';
 import * as routes from '../../constants';
 
 import './header-common.sass';
 
 export class CommonHeader extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      createModalVisible: false,
+    };
+
+    this.toggleCreateModal = this.toggleCreateModal.bind(this);
+  }
+
+  toggleCreateModal() {
+    this.setState({ createModalVisible: !this.state.createModalVisible });
+  }
+
   render() {
+    const { createModalVisible } = this.state;
 
     return (
       <Header>
@@ -63,7 +79,12 @@ export class CommonHeader extends Component {
         <Button
           className="btn create-us"
           bsStyle="primary"
-        >Create Story</Button>
+          onClick={this.toggleCreateModal}
+        >Create</Button>
+        <CreateModalContainer
+          isVisible={createModalVisible}
+          onCancel={this.toggleCreateModal}
+        />
       </Header>
     );
   }

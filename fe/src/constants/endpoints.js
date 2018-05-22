@@ -22,3 +22,5 @@ export const CHANGE_ISSUE_NAME = `http://localhost:4000/v1/issue/changeName`;
 export const CHANGE_ISSUE_DESCRIPTION = `http://localhost:4000/v1/issue/changeDescription`;
 export const CHANGE_ISSUE_ASSIGNEE = `http://localhost:4000/v1/issue/changeAssignee`;
 export const CHANGE_ISSUE_ESTIMATION_USED = 'http://localhost:4000/v1/issue/logTime';
+export const CREATE_USER_STORY = 'http://localhost:4000/v1/userstory';
+export const CREATE_ISSUE = 'http://localhost:4000/v1/issue';
