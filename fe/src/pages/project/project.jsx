@@ -16,6 +16,7 @@ export class Project extends Component {
   static get propTypes() {
     return {
       getViewedProject: PropTypes.func.isRequired,
+      saveViewedStoryByKey: PropTypes.func.isRequired,
       project: PropTypes.object,
       sprint: PropTypes.object,
       backlog: PropTypes.object,
@@ -72,7 +73,7 @@ export class Project extends Component {
   }
 
   saveViewedUserStoryKey(key) {
-    this.setState({ viewedStoryKey: key });
+    this.props.saveViewedStoryByKey(key);
   }
 
   renderSprintStories() {

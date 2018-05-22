@@ -20,7 +20,6 @@ export const createSprint = sprint => (dispatch) => {
           payload: (_, __, res) => {
             res.json()
               .then(data => {
-                console.log("SPRINT", data);
                 saveProjectActiveSprint(sprint);
               });
           },

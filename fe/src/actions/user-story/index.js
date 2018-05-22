@@ -8,3 +8,4 @@ export * from './change-story-description';
 export * from './change-story-status';
 export * from './get-story';
 export * from './create-user-story'
+export * from './save-viewed-story-by-key';

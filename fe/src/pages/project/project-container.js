@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Project } from './project';
 import {
   getViewedProject,
+  saveViewedStoryByKey,
 } from '../../actions';
 import {
   selectViewedProject,
@@ -18,6 +19,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getViewedProject,
+  saveViewedStoryByKey,
 };
 
 export const ProjectContainer = connect(
