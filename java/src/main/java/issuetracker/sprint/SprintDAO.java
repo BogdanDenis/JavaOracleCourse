@@ -20,7 +20,7 @@ public class SprintDAO {
 	public List<SprintRespDTO> findAll() {
 		try {
 			List<SprintRespDTO> res = template.query(
-				"SELECT id, name, isBacklog, isActive, projectKey\n" +
+				"SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
 					"FROM Sprint",
 				new SprintRowMapper()
 			);
@@ -31,7 +31,7 @@ public class SprintDAO {
 	}
 	
 	public SprintRespDTO findById(long id) {
-		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+		String SQL = "SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
 					 "FROM Sprint\n" +
 					 "WHERE id = :id";
 		Map params = new HashMap();
@@ -53,7 +53,7 @@ public class SprintDAO {
 		try {
 			template.update(SQL, params);
 			SprintRespDTO res = template.queryForObject(
-				"SELECT id, name, isActive, isBacklog, projectKey\n" +
+				"SELECT id, name, isActive, isBacklog, isComplete, projectKey\n" +
 					"FROM Sprint\n" +
 					"WHERE id = (SELECT MAX(id) FROM Sprint)",
 				new HashMap<>(),
@@ -81,14 +81,14 @@ public class SprintDAO {
 	
 	public SprintRespDTO startSprint(long id) {
 		String SQL = "UPDATE Sprint\n" +
-					 "SET isActive = 1\n" +
+					 "SET isActive = 1, isComplete = 0\n" +
 					 "WHERE id = :id";
 		Map params = new HashMap();
 		params.put("id", id);
 		try {
 			template.update(SQL, params);
 			SQL = "UPDATE Sprint\n" +
-				  "SET isActive = 0\n" +
+				  "SET isActive = 0, isComplete = 1\n" +
 				  "WHERE id < :id AND projectKey = (SELECT projectKey\n" +
 												   "FROM Sprint\n" +
 												   "WHERE id = :id)";
@@ -102,7 +102,7 @@ public class SprintDAO {
 	
 	public SprintRespDTO completeSprint(long id) {
 		String SQL = "UPDATE Sprint\n" +
-					 "SET isActive = 0\n" +
+					 "SET isActive = 0, isComplete = 1\n" +
 					 "WHERE id = :id";
 		Map params = new HashMap();
 		params.put("id", id);

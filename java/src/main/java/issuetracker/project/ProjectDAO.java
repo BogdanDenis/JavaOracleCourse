@@ -16,10 +16,10 @@ import java.util.Map;
 public class ProjectDAO {
 	@Autowired
 	private SprintDAO sprintDAO;
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate template;
-	
+
 	public List<ProjectRespDTO> findAll() {
 		try {
 			List<ProjectRespDTO> res = template.query(
@@ -31,7 +31,7 @@ public class ProjectDAO {
 			return null;
 		}
 	}
-	
+
 	public ProjectRespDTO findByKey(String key) {
 		String SQL = "SELECT id, key, name FROM Project WHERE key = :key";
 		Map params = new HashMap();
@@ -43,7 +43,7 @@ public class ProjectDAO {
 			return null;
 		}
 	}
-	
+
 	public boolean create(ProjectDTO projectDTO) {
 		String SQL = "INSERT INTO Project(key, name) VALUES(:key, :name)";
 		Map params = new HashMap();
@@ -56,9 +56,9 @@ public class ProjectDAO {
 			return false;
 		}
 	}
-	
+
 	public List<SprintRespDTO> findSprints(String key) {
-		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+		String SQL = "SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
 					 "FROM Sprint\n" +
 					 "WHERE projectKey = :key AND isBacklog = 0";
 		Map params = new HashMap();
@@ -70,9 +70,9 @@ public class ProjectDAO {
 			return null;
 		}
 	}
-	
+
 	public SprintRespDTO findActiveSprint(String key) {
-		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+		String SQL = "SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
 					 "FROM Sprint\n" +
 					 "WHERE projectKey = :key AND isBacklog = 0 AND isActive = 1";
 		Map params = new HashMap();
@@ -84,9 +84,9 @@ public class ProjectDAO {
 			return null;
 		}
 	}
-	
+
 	public SprintRespDTO findBacklog(String key) {
-		String SQL = "SELECT id, name, isBacklog, isActive, projectKey\n" +
+		String SQL = "SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
 					 "FROM Sprint\n" +
 					 "WHERE projectKey = :key AND isBacklog = 1";
 		Map params = new HashMap();
@@ -98,4 +98,18 @@ public class ProjectDAO {
 			return null;
 		}
 	}
+
+	public List<SprintRespDTO> findIncompleteSprints(String key) {
+	    String SQL = "SELECT id, name, isBacklog, isActive, isComplete, projectKey\n" +
+                     "FROM Sprint\n" +
+                     "WHERE projectKey = :key AND isComplete = 0 AND isBacklog = 0";
+	    Map params = new HashMap();
+	    params.put("key", key);
+	    try {
+	        List<SprintRespDTO> res = template.query(SQL, params, new SprintRowMapper());
+	        return res;
+        } catch (Exception e) {
+	        return null;
+        }
+    }
 }
