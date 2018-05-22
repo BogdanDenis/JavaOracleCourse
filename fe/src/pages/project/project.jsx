@@ -8,6 +8,7 @@ import {
   CreateSprintModalContainer,
   UserStoryContainer,
   CompleteSprintModalContainer,
+  SelectSprintModalContainer,
 } from '../../components';
 
 import './project.sass';
@@ -41,12 +42,14 @@ export class Project extends Component {
       developersAreLoaded: false,
       createSprintModalVisible: false,
       completeSprintModalVisible: false,
+      selectSprintModalVisible: false,
       viewedStoryKey: '',
     };
 
     this.toggleCreateSprintModal = this.toggleCreateSprintModal.bind(this);
     this.toggleCompleteSprintModal = this.toggleCompleteSprintModal.bind(this);
     this.saveViewedUserStoryKey = this.saveViewedUserStoryKey.bind(this);
+    this.toggleSelectSprintModal = this.toggleSelectSprintModal.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +73,14 @@ export class Project extends Component {
     } = this.state;
 
     this.setState({ completeSprintModalVisible: !completeSprintModalVisible });
+  }
+
+  toggleSelectSprintModal() {
+    const {
+      selectSprintModalVisible,
+    } = this.state;
+
+    this.setState({ selectSprintModalVisible: !selectSprintModalVisible });
   }
 
   saveViewedUserStoryKey(key) {
@@ -108,9 +119,15 @@ export class Project extends Component {
                 Don't have an active sprint?
               </p>
               <Button
+                onClick={this.toggleSelectSprintModal}
+              >
+                Choose from existing
+              </Button>
+              <p>or</p>
+              <Button
                 onClick={this.toggleCreateSprintModal}
               >
-                Create
+                Create new
               </Button>
             </div>
         }
@@ -127,6 +144,7 @@ export class Project extends Component {
     const {
       createSprintModalVisible,
       completeSprintModalVisible,
+      selectSprintModalVisible,
       viewedStoryKey,
     } = this.state;
 
@@ -165,6 +183,11 @@ export class Project extends Component {
           isVisible={completeSprintModalVisible}
           sprint={sprint}
           onClose={this.toggleCompleteSprintModal}
+        />
+        <SelectSprintModalContainer
+          isVisible={selectSprintModalVisible}
+          onCancel={this.toggleSelectSprintModal}
+          onSubmit={this.toggleSelectSprintModal}          
         />
       </section>
     );

@@ -6,6 +6,7 @@ const initialState = {
     sprint: {},
     backlog: {},
     developers: [],
+    incompleteSprints: [],
   },
 };
 
@@ -73,6 +74,15 @@ export const projectsReducer = (state = initialState, action) => {
           sprints: action.payload,
         },
       };
+    case types.SAVE_PROJECTS_INCOMPLETE_SPRINTS: {
+      return {
+        ...state,
+        viewed: {
+          ...state.viewed,
+          incompleteSprints: action.payload,
+        },
+      };
+    }
     default:
       return state;
   }

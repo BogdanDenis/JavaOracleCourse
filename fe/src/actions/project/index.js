@@ -10,4 +10,6 @@ export * from './get-projects-developers';
 export * from './save-projects-developers';
 export * from './get-projects-sprints';
 export * from './save-projects-sprints';
+export * from './get-projects-incomplete-sprints';
+export * from './save-projects-incomplete-sprints';
 export * from './types';
