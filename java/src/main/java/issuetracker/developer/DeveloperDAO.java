@@ -1,9 +1,12 @@
 package issuetracker.developer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -49,6 +52,25 @@ public class DeveloperDAO {
 			return null;
 		}
 	}
+
+	public DeveloperDTO findByEmailWithPassword(String email) {
+        String SQL = "SELECT name, email, password FROM Developer WHERE email = :email";
+        Map params = new HashMap();
+        params.put("email", email);
+        try {
+            DeveloperDTO developer = (DeveloperDTO)template.queryForObject(SQL, params, (resultSet, i) -> {
+                    DeveloperDTO developerDTO = new DeveloperDTO();
+                    developerDTO.setName(resultSet.getString("name"));
+                    developerDTO.setEmail(resultSet.getString("email"));
+                    developerDTO.setPassword(resultSet.getString("password"));
+                    return developerDTO;
+                }
+            );
+            return developer;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 	
 	public DeveloperRespDTO create(DeveloperDTO developerDTO) {
 		String SQL = "INSERT INTO Developer(name, email, password) VALUES(:name, :email, :password)";
