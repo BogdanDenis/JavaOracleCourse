@@ -1,14 +1,24 @@
 package issuetracker.auth;
 
 public class Token {
+    private long id;
     private String access_token;
     private String type;
 
     public Token() {}
 
-    public Token(String access_token, String type) {
+    public Token(long id, String access_token, String type) {
+        this.id = id;
         this.access_token = access_token;
         this.type = type;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getAccess_token() {

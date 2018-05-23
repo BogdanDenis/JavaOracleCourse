@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import issuetracker.developer.DeveloperDAO;
 import issuetracker.developer.DeveloperDTO;
+import issuetracker.developer.DeveloperRespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,12 +44,14 @@ public class AuthController {
             return failRes;
         }
 
+        DeveloperRespDTO developerRespDTO = developerDAO.findByEmail(login);
+
         String tokenStr = Jwts.builder()
                 .setSubject(login)
                 .signWith(SignatureAlgorithm.HS256, "secretKey")
                 .compact();
 
-        Token token = new Token(tokenStr, "Bearer");
+        Token token = new Token(developerRespDTO.getId(), tokenStr, "Bearer");
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }
