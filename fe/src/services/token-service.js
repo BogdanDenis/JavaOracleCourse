@@ -4,7 +4,11 @@ export class TokenService {
 	}
 
 	static getToken() {
-		return localStorage.getItem('token');
+		const token = localStorage.getItem('token');
+		if (!token) {
+			return null;
+		}
+		return JSON.parse(token);
 	}
 
 	static removeToken() {
