@@ -1,7 +1,10 @@
 package issuetracker;
 
+import issuetracker.auth.JwtFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -21,6 +24,15 @@ class WebConfig extends WebMvcConfigurerAdapter {
 
 @SpringBootApplication
 public class Application {
+	@Bean
+    public FilterRegistrationBean jwtFilter() {
+	    final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+	    registrationBean.setFilter(new JwtFilter());
+	    registrationBean.addUrlPatterns("/v1/*");
+
+	    return registrationBean;
+    }
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
