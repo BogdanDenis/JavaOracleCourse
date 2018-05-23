@@ -1,3 +1,4 @@
+export const AUTH_URL = 'http://localhost:4000/auth';
 export const GET_ALL_PROJECTS_URL = 'http://localhost:4000/v1/project';
 export const GET_PROJECT_URL = projectKey => `http://localhost:4000/v1/project/${projectKey}`;
 export const GET_DEVELOPERS_WORKLOAD = developerId => `http://localhost:4000/v1/workload/developer/${developerId}`;

@@ -1,14 +1,19 @@
-import * as types from '../../actions/workload';
-import { USER_ID } from '../../constants/TEMP';
+import { SAVE_DEVELOPERS_WORKLOAD } from '../../actions/workload';
+import { SAVE_DEVELOPERS_ID } from '../../actions/developer';
 
 const initialState = {
-  id: USER_ID,
+  id: 0,
   workload: [],
 };
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SAVE_DEVELOPERS_WORKLOAD:
+    case SAVE_DEVELOPERS_ID:
+      return {
+        ...state,
+        id: action.payload,
+      };
+    case SAVE_DEVELOPERS_WORKLOAD:
       return {
         ...state,
         workload: action.payload.id === state.id ?

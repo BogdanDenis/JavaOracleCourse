@@ -14,12 +14,14 @@ import {
 import 'font-awesome/scss/font-awesome.scss';
 
 import App from './app';
+import { tokenInjector } from './services';
 import { RootReducer } from './reducers';
 
 const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
 const createStoreWithMiddleware = applyMiddleware(
   middleware,
+  tokenInjector,
   apiMiddleware,
   thunk,
 )(createStore);
