@@ -18,7 +18,7 @@ class WebConfig extends WebMvcConfigurerAdapter {
 				.addMapping("/**")
 				.allowedOrigins("http://localhost:3000")
 				.allowedHeaders("authorization", "content-type")
-				.allowedMethods("HEAD", "GET", "POST", "PATCH");
+				.allowedMethods("HEAD", "GET", "POST", "PATCH", "DELETE");
 	}
 }
 

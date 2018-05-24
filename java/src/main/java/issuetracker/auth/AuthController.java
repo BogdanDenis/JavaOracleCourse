@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
     @Autowired
-    DeveloperDAO developerDAO;
+    private DeveloperDAO developerDAO;
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<?> auth(@RequestBody AuthDTO user) {
@@ -51,7 +53,12 @@ public class AuthController {
                 .signWith(SignatureAlgorithm.HS256, "secretKey")
                 .compact();
 
-        Token token = new Token(developerRespDTO.getId(), tokenStr, "Bearer");
+        Token token = new Token(
+                developerRespDTO.getId(),
+                tokenStr,
+                "Bearer",
+                developerRespDTO.getEmail().equals("denys.bohdan@nure.ua")
+        );
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 }

@@ -4,13 +4,15 @@ public class Token {
     private long id;
     private String access_token;
     private String type;
+    private boolean isAdmin;
 
     public Token() {}
 
-    public Token(long id, String access_token, String type) {
+    public Token(long id, String access_token, String type, boolean isAdmin) {
         this.id = id;
         this.access_token = access_token;
         this.type = type;
+        this.isAdmin = isAdmin;
     }
 
     public long getId() {
@@ -35,5 +37,13 @@ public class Token {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
