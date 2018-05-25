@@ -58,12 +58,21 @@ export const projectsReducer = (state = initialState, action) => {
             } : state.viewed.backlog,
         },
       };
-    case types.SAVE_PROJECTS_DEVELOPERS:
+    case types.SAVE_PROJECTS_DEVELOPER:
+      const { developers } = state.viewed;
+      const developerSaved = developers.find(developer => developer.id === action.payload.id);
+      if (developerSaved) {
+        return state;
+      }
+
       return {
         ...state,
         viewed: {
           ...state.viewed,
-          developers: action.payload,
+          developers: [
+            ...state.viewed.developers,
+            action.payload,
+          ],
         },
       };
     case types.SAVE_PROJECTS_SPRINTS:

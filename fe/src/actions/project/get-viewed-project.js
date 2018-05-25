@@ -4,7 +4,7 @@ import {
   saveViewedProject,
   getProjectBacklog,
   getProjectActiveSprint,
-  getProjectsDevelopers,
+  getProjectsWorkloads,
   getProjectsIncompleteSprints,
 } from './';
 import * as endpoints from '../../constants';
@@ -25,7 +25,7 @@ export const getViewedProject = projectKey => (dispatch) => {
                 dispatch(saveViewedProject(project));
                 dispatch(getProjectBacklog(project.key));
                 dispatch(getProjectActiveSprint(project.key));
-                dispatch(getProjectsDevelopers(project.key));
+                dispatch(getProjectsWorkloads(project.key));
                 dispatch(getProjectsIncompleteSprints(project.key));
               });
           },

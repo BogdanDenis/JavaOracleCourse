@@ -48,7 +48,6 @@ export class SelectSprintModal extends Component {
 		const { sprints } = this.props;
 
 		const selectedSprint = sprints.find(sprint => sprint.id === value);
-		console.log(value, selectedSprint, sprints);
 		this.setState({ selectedSprint });
 	}
 

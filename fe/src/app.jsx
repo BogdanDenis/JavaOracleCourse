@@ -29,7 +29,7 @@ class App extends Component {
     this.props.getViewedProject(projectKey);
     this.props.getProjectBacklog(projectKey);
     this.props.getProjectActiveSprint(projectKey);
-    this.props.getProjectsDevelopers(projectKey);
+    this.props.getProjectsWorkloads(projectKey);
   }
 
   matchStoryKey(pathname) {

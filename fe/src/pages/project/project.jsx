@@ -9,6 +9,7 @@ import {
   UserStoryContainer,
   CompleteSprintModalContainer,
   SelectSprintModalContainer,
+  CreateWorkloadModalContainer,
 } from '../../components';
 
 import './project.sass';
@@ -21,6 +22,7 @@ export class Project extends Component {
       project: PropTypes.object,
       sprint: PropTypes.object,
       backlog: PropTypes.object,
+      projectDevelopers: PropTypes.array,
     };
   }
 
@@ -29,6 +31,7 @@ export class Project extends Component {
       project: {},
       sprint: {},
       backlog: {},
+      projectDevelopers: [],
     };
   }
 
@@ -43,6 +46,7 @@ export class Project extends Component {
       createSprintModalVisible: false,
       completeSprintModalVisible: false,
       selectSprintModalVisible: false,
+      createWorkloadModalVisible: false,
       viewedStoryKey: '',
     };
 
@@ -50,6 +54,7 @@ export class Project extends Component {
     this.toggleCompleteSprintModal = this.toggleCompleteSprintModal.bind(this);
     this.saveViewedUserStoryKey = this.saveViewedUserStoryKey.bind(this);
     this.toggleSelectSprintModal = this.toggleSelectSprintModal.bind(this);
+    this.toggleCreateWorkloadModal = this.toggleCreateWorkloadModal.bind(this);
   }
 
   componentDidMount() {
@@ -81,6 +86,14 @@ export class Project extends Component {
     } = this.state;
 
     this.setState({ selectSprintModalVisible: !selectSprintModalVisible });
+  }
+
+  toggleCreateWorkloadModal() {
+    const {
+      createWorkloadModalVisible,
+    } = this.state;
+
+    this.setState({ createWorkloadModalVisible: !createWorkloadModalVisible });
   }
 
   saveViewedUserStoryKey(key) {
@@ -136,15 +149,18 @@ export class Project extends Component {
   }
 
   render() {
+    const { projectKey } = this.props.match.params;    
     const {
       project,
       backlog,
       sprint,
+      projectDevelopers,
     } = this.props;
     const {
       createSprintModalVisible,
       completeSprintModalVisible,
       selectSprintModalVisible,
+      createWorkloadModalVisible,
       viewedStoryKey,
     } = this.state;
 
@@ -171,6 +187,39 @@ export class Project extends Component {
                 storyKey={viewedStoryKey}
               />
             </div>
+            <div className="project__wrapper__developers">
+              <header className="project__wrapper__developers__header">
+                <h2 className="project__wrapper__developers__header__title">
+                  Developers
+                </h2>
+                {true &&
+                  <Button
+                    className="project__wrapper__developers__header__add"
+                    onClick={this.toggleCreateWorkloadModal}
+                  >
+                    Add
+                  </Button>
+                }
+              </header>
+              {
+                projectDevelopers.map(developer => {
+                  return (
+                    <div className="project__wrapper__developers__developer">
+                      <p className="project__wrapper__developers__developer__name-email">
+                        {`${developer.name} ${developer.email}`}
+                      </p>
+                      {true &&
+                        <Button
+                          onClick={() => {}}
+                        >
+                          Remove
+                        </Button>
+                      }
+                    </div>
+                  );
+                })
+              }
+            </div>
           </div>
         </section>
         <CreateSprintModalContainer
@@ -188,6 +237,12 @@ export class Project extends Component {
           isVisible={selectSprintModalVisible}
           onCancel={this.toggleSelectSprintModal}
           onSubmit={this.toggleSelectSprintModal}          
+        />
+        <CreateWorkloadModalContainer
+          isVisible={createWorkloadModalVisible}
+          onCancel={this.toggleCreateWorkloadModal}
+          onSubmit={this.toggleCreateWorkloadModal} 
+          projectKey={projectKey}         
         />
       </section>
     );

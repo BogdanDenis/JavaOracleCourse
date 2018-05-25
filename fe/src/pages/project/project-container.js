@@ -9,12 +9,14 @@ import {
   selectViewedProject,
   selectProjectBacklog,
   selectProjectActiveSprint,
+  selectProjectsDevelopers,
 } from '../../selectors';
 
 const mapStateToProps = state => ({
   project: selectViewedProject(state),
   backlog: selectProjectBacklog(state),
   sprint: selectProjectActiveSprint(state),
+  projectDevelopers: selectProjectsDevelopers(state),
 });
 
 const mapDispatchToProps = {

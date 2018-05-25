@@ -1,9 +1,11 @@
 import { RSAA } from 'redux-api-middleware';
+import { push } from 'react-router-redux';
 
 import { TokenService } from '../../services';
 import { saveDeveloperId } from './';
 import * as types from './types';
 import * as endpoints from '../../constants';
+import { ALL_PROJECTS_ROUTE } from '../../constants/routes';
 
 export const loginUser = (login, password) => (dispatch) => {
 	dispatch({
@@ -25,6 +27,7 @@ export const loginUser = (login, password) => (dispatch) => {
 						res.json()
 							.then(token => {
 								dispatch(saveDeveloperId(token.id));
+								dispatch(push(ALL_PROJECTS_ROUTE));
 								TokenService.saveToken(token);
 							});
 					},

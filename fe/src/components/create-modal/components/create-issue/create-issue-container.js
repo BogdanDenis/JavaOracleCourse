@@ -4,12 +4,12 @@ import { CreateIssue } from './create-issue.jsx';
 import { createIssue } from '../../../../actions';
 import {
 	selectAllStories,
-	selectDevelopers,
+	selectProjectsDevelopers,
 } from '../../../../selectors';
 
 const mapStateToProps = state => ({
 	stories: selectAllStories(state),
-	developers: selectDevelopers(state),
+	developers: selectProjectsDevelopers(state),
 });
 
 const mapDispatchToProps = {

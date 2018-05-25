@@ -12,6 +12,8 @@ export const developerResucer = (state = initialState, action) => {
 				...state,
 				action.payload,
 			];
+		case types.SAVE_DEVELOPERS:
+			return action.payload;
 		default:
 			return state;
 	}

@@ -16,6 +16,7 @@ import 'font-awesome/scss/font-awesome.scss';
 import App from './app';
 import { tokenInjector } from './services';
 import { RootReducer } from './reducers';
+import { getDevelopers } from './actions';
 
 const history = createBrowserHistory();
 const middleware = routerMiddleware(history);
@@ -30,6 +31,8 @@ const store = createStoreWithMiddleware(
   RootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
+
+store.dispatch(getDevelopers());
 
 ReactDOM.render(
   <Provider store={store}>

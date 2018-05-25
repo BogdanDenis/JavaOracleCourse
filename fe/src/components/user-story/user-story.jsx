@@ -15,6 +15,7 @@ import {
 } from '../../components';
 import {
   STORY_ROUTE,
+  ISSUE_ROUTE,
   ISSUE_STATUSES,
 } from '../../constants';
 
@@ -28,6 +29,7 @@ export class UserStory extends Component {
       changeStoryDescription: PropTypes.func.isRequired,
       changeStoryStatus: PropTypes.func.isRequired,
       changeStorySprint: PropTypes.func.isRequired,
+      push: PropTypes.func.isRequired,
       userStory: PropTypes.object,
       developers: PropTypes.array,
       sprints: PropTypes.array,
@@ -249,7 +251,7 @@ export class UserStory extends Component {
           <h4 className="user-story__issues__title">Issues</h4>
           <IssueList
             issues={userStory.issues}
-            onIssueClick={(key) => console.log(key)}
+            onIssueClick={(key) => push(`${ISSUE_ROUTE}/${key}`)}
           />
         </section>
       </section>

@@ -28,3 +28,5 @@ export const CREATE_USER_STORY = 'http://localhost:4000/v1/userstory';
 export const CREATE_ISSUE = 'http://localhost:4000/v1/issue';
 export const GET_PROJECTS_INCOMPLETE_SPRINTS = projectKey => `http://localhost:4000/v1/project/${projectKey}/incompleteSprints`;
 export const CHANGE_STORY_SPRINT = 'http://localhost:4000/v1/userstory/changeSprint';
+export const GET_DEVELOPERS = 'http://localhost:4000/v1/developer';
+export const CREATE_WORKLOAD = 'http://localhost:4000/v1/workload';
