@@ -230,7 +230,8 @@ export class CreateIssue extends Component {
 				>
 					<ControlLabel>Issue description</ControlLabel>
 					<FormControl
-						type="text"
+						type="textarea"
+						componentClass="textarea"						
 						placeholder="Description"
 						onChange={this.saveIssueDescription}
 					/>

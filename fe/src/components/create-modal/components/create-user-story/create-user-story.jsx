@@ -98,6 +98,7 @@ export class CreateUserStory extends Component {
 					<ControlLabel>User story description</ControlLabel>
 					<FormControl
 						type="text"
+						componentClass="textarea"
 						placeholder="Description"
 						onChange={this.saveStoryDescription}
 					/>

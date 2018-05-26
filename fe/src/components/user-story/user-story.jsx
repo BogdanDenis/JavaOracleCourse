@@ -228,7 +228,7 @@ export class UserStory extends Component {
           />
           <InputWithSave
             scope={userStory}
-            type="text"
+            type="textarea"
             name="description"
             label="Description"
             placeholder="User story description"

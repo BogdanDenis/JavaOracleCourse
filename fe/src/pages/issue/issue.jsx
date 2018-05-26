@@ -255,9 +255,10 @@ export class Issue extends Component {
 					/>
 					<InputWithSave
 						scope={issue}
-						type="text"
+						type="textarea"
 						name="description"
 						label="Description"
+						componentClass="textarea"						
 						placeholder="Issue description"
 						onInputChange={(issue) => this.setState({ issue })}
 						onChangeSave={this.saveIssueDescription}
