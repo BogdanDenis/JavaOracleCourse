@@ -129,9 +129,11 @@ export class UserStory extends Component {
   }
 
   saveStoryWithDevs(userStory, developers) {
+    const { issues } = userStory;
+
     const userStoryWithDevelopers = {
       ...userStory,
-      issues: userStory.issues.map(issue => {
+      issues: (issues || []).map(issue => {
         const assignee = developers.find(developer => developer.id === issue.assigneeId);
         const reporter = developers.find(developer => developer.id === issue.reporterId);
 

@@ -14,7 +14,10 @@ import {
 import 'font-awesome/scss/font-awesome.scss';
 
 import App from './app';
-import { tokenInjector } from './services';
+import {
+  tokenInjector,
+  PersistentState,
+} from './services';
 import { RootReducer } from './reducers';
 import { getDevelopers } from './actions';
 
@@ -25,12 +28,15 @@ const createStoreWithMiddleware = applyMiddleware(
   tokenInjector,
   apiMiddleware,
   thunk,
-)(createStore);
-
-const store = createStoreWithMiddleware(
-  RootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
+
+console.log(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(
+  RootReducer,
+  PersistentState.getState(),
+  createStoreWithMiddleware,
+);
+PersistentState.init(store);
 
 store.dispatch(getDevelopers());
 
