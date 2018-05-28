@@ -74,8 +74,7 @@ public class WorkloadDAO {
 	}
 	
 	public boolean removeDeveloperFromAProject(WorkloadDTO workloadDTO) {
-		String SQL = "UPDATE Workload\n" +
-					 "SET isActive = 0\n" +
+		String SQL = "DELETE Workload\n" +
 					 "WHERE developerId = :developerId AND projectKey = :projectKey";
 		Map params = new HashMap();
 		params.put("projectKey", workloadDTO.getProjectKey());

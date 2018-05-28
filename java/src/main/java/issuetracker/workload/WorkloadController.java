@@ -50,7 +50,7 @@ public class WorkloadController {
 		return new ResponseEntity<>("", HttpStatus.NOT_FOUND);
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.PATCH,
+	@RequestMapping(value = "", method = RequestMethod.DELETE,
 			consumes = "application/json", produces = "application/json")
 	public ResponseEntity<?> removeDeveloperFromAProject(@RequestBody WorkloadDTO workloadDTO) {
 		boolean success = workloadDAO.removeDeveloperFromAProject(workloadDTO);
