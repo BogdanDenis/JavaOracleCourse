@@ -19,10 +19,12 @@ export class Project extends Component {
     return {
       getViewedProject: PropTypes.func.isRequired,
       saveViewedStoryByKey: PropTypes.func.isRequired,
+      deleteWorkload: PropTypes.func.isRequired,
       project: PropTypes.object,
       sprint: PropTypes.object,
       backlog: PropTypes.object,
       projectDevelopers: PropTypes.array,
+      isAdmin: PropTypes.bool,
     };
   }
 
@@ -32,6 +34,7 @@ export class Project extends Component {
       sprint: {},
       backlog: {},
       projectDevelopers: [],
+      isAdmin: false,
     };
   }
 
@@ -155,6 +158,8 @@ export class Project extends Component {
       backlog,
       sprint,
       projectDevelopers,
+      isAdmin,
+      deleteWorkload,
     } = this.props;
     const {
       createSprintModalVisible,
@@ -192,7 +197,7 @@ export class Project extends Component {
                 <h2 className="project__wrapper__developers__header__title">
                   Developers
                 </h2>
-                {true &&
+                {isAdmin &&
                   <Button
                     className="project__wrapper__developers__header__add"
                     onClick={this.toggleCreateWorkloadModal}
@@ -208,9 +213,12 @@ export class Project extends Component {
                       <p className="project__wrapper__developers__developer__name-email">
                         {`${developer.name} ${developer.email}`}
                       </p>
-                      {true &&
+                      {isAdmin &&
                         <Button
-                          onClick={() => {}}
+                          onClick={() => deleteWorkload({
+                            developerId: developer.id,
+                            projectKey,
+                          })}
                         >
                           Remove
                         </Button>

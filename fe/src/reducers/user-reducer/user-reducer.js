@@ -1,5 +1,8 @@
 import { SAVE_DEVELOPERS_WORKLOAD } from '../../actions/workload';
-import { SAVE_DEVELOPER_ID } from '../../actions/developer';
+import {
+  SAVE_DEVELOPER_ID,
+  SAVE_ADMIN_STATUS,
+} from '../../actions/developer';
 
 const initialState = {
   id: 0,
@@ -18,6 +21,11 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         workload: action.payload.id === state.id ?
           action.payload.workload : state.workload,
+      };
+    case SAVE_ADMIN_STATUS:
+      return {
+        ...state,
+        isAdmin: action.payload,
       };
     default:
       return state;
