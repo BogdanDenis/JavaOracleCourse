@@ -6,7 +6,7 @@ import * as endpoints from '../../constants';
 export const deleteWorkload = workloadDTO => (dispatch) => {
 	dispatch({
 		[RSAA]: {
-			endpoint: endpoints.DELETE_WORKLOAD(workloadId),
+			endpoint: endpoints.DELETE_WORKLOAD,
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',

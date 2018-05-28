@@ -30,4 +30,4 @@ export const GET_PROJECTS_INCOMPLETE_SPRINTS = projectKey => `http://localhost:4
 export const CHANGE_STORY_SPRINT = 'http://localhost:4000/v1/userstory/changeSprint';
 export const GET_DEVELOPERS = 'http://localhost:4000/v1/developer';
 export const CREATE_WORKLOAD = 'http://localhost:4000/v1/workload';
-export const DELETE_WORKLOAD = workloadId => `http://localhost:4000/v1/workload/${workloadId}`;
+export const DELETE_WORKLOAD = 'http://localhost:4000/v1/workload';
