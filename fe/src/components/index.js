@@ -13,3 +13,4 @@ export * from './log-work-modal/log-work-modal-container';
 export * from './create-modal/create-modal-container';
 export * from './select-sprint-modal/select-sprint-modal-container';
 export * from './create-workload-modal/create-workload-modal-container';
+export * from './create-project-modal/create-project-modal-container';

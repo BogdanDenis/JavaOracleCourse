@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
   userStory: selectViewedStory(state),
   developers: selectDevelopers(state),
   sprints: [
-    ...selectIncompleteSprints(state),
+    ...(selectIncompleteSprints(state) || []),
     selectProjectBacklog(state),    
     selectProjectActiveSprint(state),
   ],

@@ -118,6 +118,10 @@ export class UserStory extends Component {
 
   saveStorySprintList(userStory, sprints) {
     const sprintList = sprints.map(sprint => {
+      if (!sprint) {
+        return {};
+      }
+
       return {
         value: sprint.id,
         text: sprint.name,

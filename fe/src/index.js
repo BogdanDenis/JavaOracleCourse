@@ -33,7 +33,9 @@ const createStoreWithMiddleware = applyMiddleware(
 console.log(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const store = createStore(
   RootReducer,
-  PersistentState.getState(),
+  {
+    user: PersistentState.getState().user,
+  },
   createStoreWithMiddleware,
 );
 PersistentState.init(store);

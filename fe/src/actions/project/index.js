@@ -13,4 +13,5 @@ export * from './save-projects-sprints';
 export * from './get-projects-incomplete-sprints';
 export * from './save-projects-incomplete-sprints';
 export * from './get-projects-developer';
+export * from './create-project';
 export * from './types';

@@ -249,7 +249,7 @@ export class Project extends Component {
         <CreateWorkloadModalContainer
           isVisible={createWorkloadModalVisible}
           onCancel={this.toggleCreateWorkloadModal}
-          onSubmit={this.toggleCreateWorkloadModal} 
+          onSubmit={this.toggleCreateWorkloadModal}
           projectKey={projectKey}         
         />
       </section>
