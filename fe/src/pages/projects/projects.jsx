@@ -19,12 +19,14 @@ export class Projects extends Component {
       getProjects: PropTypes.func.isRequired,
       getViewedProject: PropTypes.func.isRequired,
       projects: PropTypes.array,
+      isAdmin: PropTypes.bool,
     };
   }
 
   static get defaultProps() {
     return {
       projects: [],
+      isAdmin: false,
     };
   }
 
@@ -54,17 +56,20 @@ export class Projects extends Component {
     const {
       getProjects,
       projects,
+      isAdmin,
     } = this.props;
     const { createProjectModalVisible } = this.state;
 
     return (
       <section className="projects-page">
         <CommonHeader />
-        <Button
-          onClick={this.toggleCreateProjectModal}
-        >
-          Create a project
-        </Button>
+        {isAdmin &&
+          <Button
+            onClick={this.toggleCreateProjectModal}
+          >
+            Create a project
+          </Button>
+        }
         <ProjectsListContainer
           getProjects={getProjects}
           projects={projects}

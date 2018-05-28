@@ -32,3 +32,4 @@ export const GET_DEVELOPERS = 'http://localhost:4000/v1/developer';
 export const CREATE_WORKLOAD = 'http://localhost:4000/v1/workload';
 export const DELETE_WORKLOAD = 'http://localhost:4000/v1/workload';
 export const CREATE_PROJECT = 'http://localhost:4000/v1/project';
+export const CREATE_DEVELOPER = 'http://localhost:4000/v1/developer';

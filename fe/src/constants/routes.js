@@ -1,4 +1,5 @@
 export const LOGIN_ROUTE = '/';
+export const REGISTER_ROUTE = '/register';
 export const HOME_ROUTE = '/home';
 export const ALL_PROJECTS_ROUTE = '/projects';
 export const MY_PROJECTS_ROUTE = '/my-projects';

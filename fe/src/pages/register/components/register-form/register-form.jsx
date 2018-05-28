@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom';
 import {
   Button,
   FormControl,
@@ -8,12 +7,10 @@ import {
   FormGroup,
 } from 'react-bootstrap';
 
-import { REGISTER_ROUTE } from '../../../../constants/routes';
-
-export class LoginForm extends Component {
+export class RegisterForm extends Component {
   static get propTypes() {
     return {
-      loginUser: PropTypes.func.isRequired,
+      createDeveloper: PropTypes.func.isRequired,
     };
   }
 
@@ -21,13 +18,22 @@ export class LoginForm extends Component {
     super(props);
 
     this.state = {
+			name: '',
       email: '',
-      password: '',
-    };
+			password: '',
+		};
+
+		this.onNameChange = this.onNameChange.bind(this);
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onLoginClick = this.onLoginClick.bind(this);
+    this.onRegisterClick = this.onRegisterClick.bind(this);
   }
+
+	onNameChange(e) {
+		const name = e.target.value;
+
+		this.setState({ name });
+	}
 
   onEmailChange(e) {
     const email = e.target.value;
@@ -39,23 +45,40 @@ export class LoginForm extends Component {
     this.setState({ password });
   }
 
-  onLoginClick() {
+  onRegisterClick() {
     const {
+			name,
       email,
       password,
     } = this.state;
 
-    this.props.loginUser(email, password);
+    this.props.createDeveloper({
+			name,
+			email,
+			password,
+		});
   }
   
   render() {
     const {
+			name,
       email,
       password,
     } = this.state;
 
     return (
-      <form className="login-form">
+      <form className="register-form">
+				<FormGroup
+          controlId="name"
+        >
+          <ControlLabel>Name</ControlLabel>
+          <FormControl
+            type="text"
+            value={name}
+            placeholder="Enter name"
+            onChange={this.onNameChange}
+          />
+        </FormGroup>
         <FormGroup
           controlId="email"
         >
@@ -80,15 +103,8 @@ export class LoginForm extends Component {
         </FormGroup>
         <Button
           bsStyle="primary"
-          onClick={this.onLoginClick}
-        >Login</Button>
-        or
-        <Link
-          to={REGISTER_ROUTE}
-          className="register-link"
-        >
-          Register
-        </Link>
+          onClick={this.onRegisterClick}
+        >Register</Button>
       </form>
     );
   }

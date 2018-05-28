@@ -6,3 +6,4 @@ export * from './save-developer-id';
 export * from './get-developers';
 export * from './save-developers';
 export * from './save-admin-status';
+export * from './create-developer';
