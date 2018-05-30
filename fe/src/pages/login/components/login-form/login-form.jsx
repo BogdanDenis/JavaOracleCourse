@@ -10,6 +10,8 @@ import {
 
 import { REGISTER_ROUTE } from '../../../../constants/routes';
 
+import './login-form.sass';
+
 export class LoginForm extends Component {
   static get propTypes() {
     return {
@@ -82,7 +84,7 @@ export class LoginForm extends Component {
           bsStyle="primary"
           onClick={this.onLoginClick}
         >Login</Button>
-        or
+        <span className="login-form__links-separator">or</span>
         <Link
           to={REGISTER_ROUTE}
           className="register-link"
