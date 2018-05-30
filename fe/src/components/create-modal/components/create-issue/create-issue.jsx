@@ -43,9 +43,9 @@ export class CreateIssue extends Component {
 
 		const newIssue = {
 			...props.issue,
-			storyKey: props.stories[0].key,
+			storyKey: props.stories[0] ? props.stories[0].key : '',
 			type: ISSUE_TYPES.TASK,
-			assigneeId: props.developers[0].id,
+			assigneeId: props.developers[0] ? props.developers[0].id : 0,
 		};
 
 		props.onDataChange(newIssue);

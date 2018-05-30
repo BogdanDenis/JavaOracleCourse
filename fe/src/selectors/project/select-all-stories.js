@@ -8,8 +8,12 @@ export const selectAllStories = (state) => {
 	const { backlog } = viewed;
 
 	const stories = [];
-	sprint.stories.map(story => stories.push(story));
-	backlog.stories.map(story => stories.push(story));
+	if (sprint && sprint.stories) {
+		sprint.stories.map(story => stories.push(story));
+	}
+	if (backlog && backlog.stories) {
+		backlog.stories.map(story => stories.push(story));
+	}
 
 	return stories;
 };
